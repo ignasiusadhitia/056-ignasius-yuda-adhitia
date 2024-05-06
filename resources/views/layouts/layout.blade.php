@@ -17,9 +17,9 @@
         <div>
             <ul>
                 <li>
-                    <a href="">Dashboard</a>
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
                     <a href="">Profile</a>
-                    <a href="">Logout</a>
+                    <a href="{{ route('logout') }}">Logout</a>
                 </li>
             </ul>
         </div>
