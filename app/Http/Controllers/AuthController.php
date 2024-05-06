@@ -66,8 +66,24 @@ class AuthController extends Controller
         return view('dashboard');
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
+        if ($request->isMethod('post')) {
+
+            $request->validate([
+                'name' => 'required|string',
+            ]);
+
+            $id = auth()->user()->id;
+
+            $user = User::findOrFail($id);
+
+            $user->name = $request->name;
+            $user->save();
+
+            return to_route('profile')->with('success', 'Successfully, profile updated');
+        }
+
         return view('profile');
     }
 
