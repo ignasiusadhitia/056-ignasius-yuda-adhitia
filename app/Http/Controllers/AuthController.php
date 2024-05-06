@@ -66,6 +66,11 @@ class AuthController extends Controller
         return view('dashboard');
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
     public function logout()
     {
         Session::flush();
