@@ -39,6 +39,28 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    public function login(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+
+            if (Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])) {
+
+                return to_route('dashboard');
+            } else {
+                return to_route('login')->with('error', 'Invalid login details');
+            }
+        }
+
+        return view('auth.login');
+    }
+
     public function dashboard()
     {
         return view('dashboard');
