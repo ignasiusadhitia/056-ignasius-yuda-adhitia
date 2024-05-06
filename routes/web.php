@@ -13,4 +13,6 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
