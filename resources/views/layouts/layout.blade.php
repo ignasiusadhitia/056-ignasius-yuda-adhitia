@@ -18,7 +18,7 @@
             <ul>
                 <li>
                     <a href="{{ route('dashboard') }}">Dashboard</a>
-                    <a href="">Profile</a>
+                    <a href="{{ route('profile') }}">Profile</a>
                     <a href="{{ route('logout') }}">Logout</a>
                 </li>
             </ul>
