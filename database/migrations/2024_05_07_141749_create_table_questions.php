@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('question_text');
-            $table->enum('difficulty_level', ['easy', 'medium', 'hard']);
-            $table->unsignedBigInteger('category_id');
+            $table->enum('difficulty_level', ['easy', 'medium', 'hard'])->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->string('image_url');
-            $table->integer('ppoints');
+            $table->string('image_url')->nullable();
+            $table->integer('points');
             $table->timestamps();
             $table->softDeletes();
 

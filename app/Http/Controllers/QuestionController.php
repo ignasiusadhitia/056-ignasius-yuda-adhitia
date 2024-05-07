@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
+    public function index()
+    {
+        $questions = Question::where('user_id', Auth::id())->latest()->paginate(10);
+
+        return view('questions.index', compact('questions'));
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -26,8 +33,7 @@ class QuestionController extends Controller
             'question_text' => 'required|string|max:255',
             'difficulty_level' => 'required|in:easy,medium,hard',
             'answer.*' => 'required|string|max:255',
-            'correct_answer' => 'required|integer|between:1' . count($request->answer),
-            'image_url' => 'required_without:image|nullable|url',
+            'correct_answer' => 'required|integer|between:1,' . count($request->answer),
         ]);
 
         if ($validator->fails()) {
@@ -42,6 +48,7 @@ class QuestionController extends Controller
             $question->user_id = Auth::id();
             $question->image_url = $request->image_url;
             $question->points = $question->calculatePoints($request->difficulty_level);
+
             $question->save();
 
             $answers = [];
@@ -56,6 +63,7 @@ class QuestionController extends Controller
 
             $question->answers()->saveMany($answers);
         });
+
 
         return redirect()->route('questions.index')->with('success', 'Question created successfully!');
     }

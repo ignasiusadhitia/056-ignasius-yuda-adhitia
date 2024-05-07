@@ -1,6 +1,6 @@
 <h1>Create New Question</h1>
 
-<form action="POST" action="{{ route('questions.store') }}" enctype="multipart/form-data">
+<form method="POST" action="{{ route('questions.store') }}">
     @csrf
 
     <div>
