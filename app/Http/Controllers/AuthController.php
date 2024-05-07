@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    // Register
+
     public function register(Request $request)
     {
         if ($request->isMethod("post")) {
