@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,4 +17,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::resource('questions', QuestionController::class)->except('show');
 });
