@@ -5,7 +5,7 @@
 @section('content')
 
     <h2>Profile</h2>
-    <form action="{{ route('profile') }}" method="POST">
+    <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <div>
@@ -20,6 +20,14 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" value="{{ auth()->user() ? auth()->user()->email : '' }}"
                 disabled>
+        </div>
+
+        <div>
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+            @error('image')
+                <div>{{ $message }}</div>
+            @enderror
         </div>
 
         <div>
