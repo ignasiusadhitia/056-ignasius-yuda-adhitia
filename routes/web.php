@@ -13,7 +13,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::middleware('auth')->group(function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::match(['get', 'post'], 'profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

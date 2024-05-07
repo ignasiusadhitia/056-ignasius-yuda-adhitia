@@ -17,7 +17,7 @@ class QuestionController extends Controller
     {
         $categories = Category::all();
 
-        return view("question.create", compact("categories"));
+        return view("questions.create", compact("categories"));
     }
 
     public function store(Request $request)
@@ -27,7 +27,6 @@ class QuestionController extends Controller
             'difficulty_level' => 'required|in:easy,medium,hard',
             'answer.*' => 'required|string|max:255',
             'correct_answer' => 'required|integer|between:1' . count($request->answer),
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'image_url' => 'required_without:image|nullable|url',
         ]);
 
@@ -41,21 +40,7 @@ class QuestionController extends Controller
             $question->difficulty_level = $request->difficulty_level;
             $question->category_id = $request->category_id;
             $question->user_id = Auth::id();
-
-            $imageURL = null;
-            if ($request->hasFile('image')) {
-                try {
-                    $imageName = time() . '.' . $request->image->extension();
-                    $request->image->move(public_path('images'), $imageName);
-                    $imageURL = $imageName;
-                } catch (Exception $e) {
-                    return back()->withErrors(['image' => 'Failed to upload image: ' . $e->getMessage()])->withInput();
-                }
-            } else {
-                $imageURL = $request->image_url;
-            }
-
-            $question->image_url = $imageURL;
+            $question->image_url = $request->image_url;
             $question->points = $question->calculatePoints($request->difficulty_level);
             $question->save();
 

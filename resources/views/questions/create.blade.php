@@ -1,15 +1,5 @@
 <h1>Create New Question</h1>
 
-@if (@errors->any())
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
 <form action="POST" action="{{ route('questions.store') }}" enctype="multipart/form-data">
     @csrf
 
@@ -39,7 +29,6 @@
     <div>
         <label for="image_url">Image URL:</label>
         <input type="text" id="image_url" name="image_url" value="{{ old('image_url') }}">
-        <input type="file" id="image" name="image">
     </div>
 
     <h4>Answers:</h4>
