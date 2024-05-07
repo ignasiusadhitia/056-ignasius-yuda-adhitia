@@ -72,6 +72,7 @@ class AuthController extends Controller
 
             $request->validate([
                 'name' => 'required|string',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
             $id = auth()->user()->id;
@@ -79,6 +80,12 @@ class AuthController extends Controller
             $user = User::findOrFail($id);
 
             $user->name = $request->name;
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+
+            $user->image = $request->image->storeAs('images', $imageName);
+
             $user->save();
 
             return to_route('profile')->with('success', 'Successfully, profile updated');
