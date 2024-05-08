@@ -40,6 +40,11 @@
         </select>
     </div>
 
+    <div>
+        <label for="image_url">Image URL:</label>
+        <input type="text" id="image_url" name="image_url" value="{{ old('image_url', $question->image_url) }}">
+    </div>
+
     <h4>Answers</h4>
 
     <div>
