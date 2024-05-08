@@ -128,4 +128,10 @@ class QuestionController extends Controller
 
         return redirect()->route('questions.index')->with('success', 'Question updated successfully');
     }
+
+    public function destroy(Question $question)
+    {
+        $question->delete();
+        return redirect()->route('questions.index')->with('success', 'Question deleted successfully');
+    }
 }
