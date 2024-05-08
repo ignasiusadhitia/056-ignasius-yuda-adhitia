@@ -19,7 +19,7 @@ This project aims to develop a web application, "Jabar Trivia," where users can 
 
 ## Technical Stack:
 
--   Frontend: Native HTML and CSS
+-   Frontend: HTML and CSS
 -   Backend: Laravel (PHP framework)
 -   Database: MySQL
 
