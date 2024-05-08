@@ -70,7 +70,7 @@ class QuestionController extends Controller
 
     public function edit(Question $question)
     {
-        if ($question->user_id == Auth::id()) {
+        if ($question->user_id !== Auth::id()) {
             abort(403, 'Unauthorized action');
         }
 
