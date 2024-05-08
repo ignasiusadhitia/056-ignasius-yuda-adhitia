@@ -57,7 +57,7 @@
     <div>
         <label for="answer3">Answer 3:</label>
         <input type="text" id="answer3" name="answer[]"
-            value="{{ old('answer.2', $question->answer[2]->answer_text) }}" required>
+            value="{{ old('answer.2', $question->answers[2]->answer_text) }}" required>
     </div>
 
     <div>
