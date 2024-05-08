@@ -28,6 +28,13 @@
                     <td>{{ $question->difficulty_level }}</td>
                     <td>
                         <a href="{{ route('questions.edit', $question) }}">Edit</a>
+                        <form action="{{ route('questions.destroy', $question) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit"
+                                onclick="return confirm('Are you want to delete this question?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
