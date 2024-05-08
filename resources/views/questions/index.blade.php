@@ -26,6 +26,9 @@
                     <td>{{ $question->question_text }}</td>
                     <td>{{ $question->category->name }}</td>
                     <td>{{ $question->difficulty_level }}</td>
+                    <td>
+                        <a href="{{ route('questions.edit', $question) }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
