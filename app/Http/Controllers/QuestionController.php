@@ -67,4 +67,15 @@ class QuestionController extends Controller
 
         return redirect()->route('questions.index')->with('success', 'Question created successfully!');
     }
+
+    public function edit(Question $question)
+    {
+        if ($question->user_id == Auth::id()) {
+            abort(403, 'Unauthorized action');
+        }
+
+        $categories = Category::all();
+        $answers = $question->answers;
+        return view('questions.edit', compact('question', 'categories', 'answers'));
+    }
 }
