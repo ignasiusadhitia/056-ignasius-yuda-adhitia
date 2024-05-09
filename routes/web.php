@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TriviaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,4 +20,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::resource('questions', QuestionController::class)->except('show');
+
+    Route::get('trivia', [TriviaController::class, 'play'])->name('trivia.play');
+    Route::post('trivia', [TriviaController::class, 'answer'])->name('trivia.answer');
+
+    Route::get('leaderboard', [TriviaController::class, 'leaderboard'])->name('leaderboard');
 });
