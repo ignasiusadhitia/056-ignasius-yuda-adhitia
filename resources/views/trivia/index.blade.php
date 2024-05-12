@@ -15,7 +15,9 @@
             <img src="{{ $question->image_url }}" alt="Question Image">
         @endif
 
-        <form action="{{ route('trivia.play') }}" method="POST">
+        <form action="
+        {{ route('trivia.play') }}
+        " method="POST">
             @csrf
             <input type="hidden" name="question_id" value="{{ $question->id }}">
             <div>
