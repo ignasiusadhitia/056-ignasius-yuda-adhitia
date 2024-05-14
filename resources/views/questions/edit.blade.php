@@ -9,7 +9,6 @@
 
         <form action="" method="">
             @csrf
-            @method()
 
             <div class="field-wrapper">
                 <label for="question_text">Question Text:</label>
