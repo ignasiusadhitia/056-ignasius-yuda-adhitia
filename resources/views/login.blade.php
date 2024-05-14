@@ -10,8 +10,9 @@
         <form action="" method="">
             @csrf
 
-            <div>
-                <input type="email" name="email" id="email" placeholder="Email">
+            <div class="field-wrapper">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
                 @error('email')
                     <div>
                         <span>{{ $message }}</span>
@@ -19,8 +20,9 @@
                 @enderror
             </div>
 
-            <div>
-                <input type="password" name="password" id="password" placeholder="Password">
+            <div class="field-wrapper">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password">
                 @error('password')
                     <div>
                         <span>{{ $message }}</span>
