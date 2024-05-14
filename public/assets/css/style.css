@@ -59,6 +59,12 @@ h6 {
 
 header {
     width: 100%;
+    padding: 1em;
+}
+
+footer {
+    display: block;
+    padding: 1em;
 }
 
 nav {
@@ -72,4 +78,11 @@ nav a {
 
 main {
     text-align: center;
+}
+
+.section-wrapper {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
 }
