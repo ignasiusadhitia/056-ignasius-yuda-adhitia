@@ -117,7 +117,8 @@ form button {
 
 .questions-wrapper,
 .question-item,
-.trivia-wrapper {
+.trivia-wrapper,
+.user-wrapper {
     width: 100%;
 }
 
@@ -194,4 +195,57 @@ form button {
     text-align: center;
     font-weight: 400;
     cursor: pointer;
+}
+
+.user-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.user-wrapper .greeting-wrapper {
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: 1fr auto;
+}
+
+.greeting-wrapper img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+
+.user-wrapper .rank-wrapper {
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: repeat(2, auto);
+}
+
+.user-wrapper .rank-wrapper div {
+    border: 1px solid #000;
+    padding: 1em;
+}
+
+.user-wrapper .rank-wrapper div span {
+    display: block;
+}
+
+.menu {
+    margin: 1em 0;
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    text-align: center;
+}
+
+.menu .menu-item {
+    min-height: 8em;
+    border: 1px solid #000;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
