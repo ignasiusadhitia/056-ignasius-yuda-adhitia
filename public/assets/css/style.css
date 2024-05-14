@@ -144,9 +144,19 @@ form button {
     align-items: center;
 }
 
+#avatar,
+.rank-item img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#avatar {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
 .rank-item img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
 }
