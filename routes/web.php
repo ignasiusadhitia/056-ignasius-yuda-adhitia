@@ -24,15 +24,15 @@ Route::get('/profile', function () {
 
 Route::get('/questions', function () {
     return view('questions.index');
-});
+})->name('questions');
 
 Route::get('/questions/create', function () {
     return view('questions.create');
-});
+})->name('questions.create');
 
 Route::get('/questions/edit/{question}', function () {
     return view('questions.edit');
-});
+})->name('questions.edit');
 
 Route::get('/trivia', function () {
     return view('trivia');

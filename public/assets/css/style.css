@@ -56,14 +56,16 @@ h6 {
     max-width: 42em;
 }
 
-header {
+header,
+main,
+footer {
     width: 100%;
     padding: 1em;
 }
 
+h1,
 footer {
-    display: block;
-    padding: 1em;
+    text-align: center;
 }
 
 nav {
@@ -76,12 +78,11 @@ nav a {
 }
 
 main {
-    text-align: center;
     margin-bottom: auto;
 }
 
 .section-wrapper {
-    padding: 1em;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -112,4 +113,23 @@ form .field-wrapper {
 
 form button {
     margin-top: 0.5em;
+}
+
+.questions-wrapper,
+.question-item {
+    width: 100%;
+}
+
+.questions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.question-item {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 0.25fr 2fr 1.25fr 1fr 1fr;
+    column-gap: 1em;
+    border: 1px solid #000;
 }
