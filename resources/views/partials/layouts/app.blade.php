@@ -18,11 +18,10 @@
 </head>
 
 <body>
-    <header>
-        <span>Jabar Trivia</span>
-
-        @if (Route::has('login'))
-            <nav>
+    <header class="container">
+        <nav>
+            <a href="/">Jabar Trivia</a>
+            @if (Route::has('login'))
                 @auth
                     <a href="{{ url('/dashboard') }}">
                         Dashboard
@@ -31,18 +30,12 @@
                     <a href="{{ route('login') }}">
                         Log in
                     </a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">
-                            Register
-                        </a>
-                    @endif
                 @endauth
-            </nav>
-        @endif
+            @endif
+        </nav>
     </header>
 
-    <main>
+    <main class="container">
         @session('success')
             <div id="success-alert">
                 {{ session('success') }}
@@ -58,7 +51,7 @@
         @yield('content')
     </main>
 
-    <footer>
+    <footer class="container">
         <span>Jabar Trivia &copy; {{ date('Y') }}</span>
     </footer>
 </body>
