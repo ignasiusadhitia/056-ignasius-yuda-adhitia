@@ -86,3 +86,15 @@ main {
     flex-direction: column;
     gap: 2em;
 }
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+form input,
+form button {
+    width: 100%;
+}

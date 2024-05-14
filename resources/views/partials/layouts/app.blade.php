@@ -20,8 +20,8 @@
 <body>
     <header class="container">
         <nav>
-            <a href="/">Jabar Trivia</a>
             @if (Route::has('login'))
+                <a href="/">Jabar Trivia</a>
                 @auth
                     <a href="{{ url('/dashboard') }}">
                         Dashboard
