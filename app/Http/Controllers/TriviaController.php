@@ -11,23 +11,20 @@ class TriviaController extends Controller
 {
     public function play(Request $request)
     {
-        $question = Question::whereDoesntHave('userAnswers', function ($query) {
+        $questions = Question::whereDoesntHave('userAnswers', function ($query) {
             $query->where('user_id', auth()->id());
         })->orWhereHas('userAnswers', function ($query) {
             $query->where('user_id', auth()->id())->where('answered_correctly', false);
-        })->inRandomOrder()->first();
+        })->inRandomOrder()->limit(2)->get();
 
-        if (!$question) {
+        if ($questions->isEmpty()) {
             return redirect()->route('leaderboard')->with('message', 'You have answered all questions!');
         }
 
-        $nextQuestion = Question::whereDoesntHave('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id());
-        })->orWhereHas('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id())->where('answered_correctly', false);
-        })->inRandomOrder()->first();
+        $currentQuestion = $questions->first();
+        $nextQuestion = isset($questions[1]) ? $questions[1] : null;
 
-        return view('trivia', compact('question', 'nextQuestion'));
+        return view('trivia', compact('currentQuestion', 'nextQuestion'));
     }
 
     public function answer(Request $request)
@@ -43,7 +40,8 @@ class TriviaController extends Controller
             abort(404);
         }
 
-        $correct = $question->answer_id === $request->answer_id;
+        $correctAnswer = $question->answers->where('id', $request->answer_id)->first();
+        $correct = $correctAnswer !== null;
 
         $userAnswer = UserAnswer::create([
             'user_id' => auth()->id(),
@@ -54,7 +52,6 @@ class TriviaController extends Controller
         if ($correct) {
             $user = User::find(auth()->id());
             $user->increment('score');
-            $user->user();
         }
 
         $nextQuestion = Question::whereDoesntHave('userAnswers', function ($query) {
