@@ -10,6 +10,7 @@ class Question extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'questions';
     protected $fillable = [
         'question_text',
         'difficulty_level',

@@ -8,7 +8,7 @@ class UserAnswer extends Model
 {
     protected $fillable = [
         'user_id',
-        'trivia_question_id',
+        'question_id',
         'answer_id',
         'answered_correctly',
     ];

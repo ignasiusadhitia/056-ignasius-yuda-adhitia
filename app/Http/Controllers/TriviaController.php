@@ -2,74 +2,67 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Http\Requests\SubmitAnswerRequest;
+use App\Models\Answer;
 use App\Models\Question;
-use App\Models\User;
+use App\Models\Score;
 use App\Models\UserAnswer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TriviaController extends Controller
 {
-    public function play(Request $request)
+    public function showQuestion()
     {
-        $questions = Question::whereDoesntHave('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id());
-        })->orWhereHas('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id())->where('answered_correctly', false);
-        })->inRandomOrder()->limit(2)->get();
+        $question = Question::inRandomOrder()->with('answers')->first();
 
-        if ($questions->isEmpty()) {
-            return redirect()->route('leaderboard')->with('message', 'You have answered all questions!');
-        }
-
-        $currentQuestion = $questions->first();
-        $nextQuestion = isset($questions[1]) ? $questions[1] : null;
-
-        return view('trivia', compact('currentQuestion', 'nextQuestion'));
+        return view('trivia.question', compact('question'));
     }
 
-    public function answer(Request $request)
+    public function submitAnswer(Request $request)
     {
         $request->validate([
-            'question_id' => 'required|integer',
-            'answer_id' => 'required|integer',
+            'question_id' => 'required|exists:questions,id',
+            'answer_id' => 'required|exists:answers,id',
         ]);
 
         $question = Question::find($request->question_id);
+        $answer = Answer::find($request->answer_id);
 
-        if (!$question) {
-            abort(404);
-        }
+        $isCorrect = $answer->is_correct;
+        $points = $isCorrect ? $question->points : 0;
 
-        $correctAnswer = $question->answers->where('id', $request->answer_id)->first();
-        $correct = $correctAnswer !== null;
-
-        $userAnswer = UserAnswer::create([
+        UserAnswer::create([
             'user_id' => auth()->id(),
             'question_id' => $question->id,
-            'answered_correctly' => $correct,
+            'answer_id' => $answer->id,
+            'answered_correctly' => $isCorrect,
         ]);
 
-        if ($correct) {
-            $user = User::find(auth()->id());
-            $user->increment('score');
+        $user = auth()->user();
+        $score = $user->score;
+
+
+        if (!$score) {
+            $score = new Score(['user_id' => $user->id, 'score' => 0]);
+            $score->save();
+            $user->setRelation('score', $score);
         }
 
-        $nextQuestion = Question::whereDoesntHave('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id());
-        })->orWhereHas('userAnswers', function ($query) {
-            $query->where('user_id', auth()->id())->where('answered_correctly', false);
-        })->inRandomOrder()->first();
 
-        return redirect()->route('trivia.play')->with([
-            'message' => $correct ? 'Correct!' : 'Incorrect.',
-            'nextQuestion' => $nextQuestion,
-        ]);
+        $score->score += $points;
+        $score->save();
+
+        return redirect()->route('trivia.question')->with('status', $isCorrect ? 'Correct!' : 'Wrong answer!');
     }
 
-    public function leaderboard()
-    {
-        $users = User::orderBy('score', 'desc')->limit(3)->get();
 
-        return view('leaderboard', compact('users'));
+    public function showLeaderboard()
+    {
+        $scores = Score::with('user')->orderByDesc('score')->take(10)->get();
+
+        return view('trivia.leaderboard', compact('scores'));
     }
 }

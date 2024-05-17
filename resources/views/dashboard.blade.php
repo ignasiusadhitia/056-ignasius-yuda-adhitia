@@ -10,6 +10,6 @@
         <img src="{{ asset('images/' . auth()->user()->image) }}" alt="profile" />
     @endif
 
-    <a href="{{ route('trivia.play') }}">Play</a>
+    <a href="{{ route('trivia.question') }}">Play</a>
 
 @endsection
