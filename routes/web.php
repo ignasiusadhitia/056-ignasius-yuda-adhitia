@@ -9,6 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware' => ['guest']], function () {
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
     Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
@@ -28,3 +29,4 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Leaderboard (Optional)
     Route::get('/trivia/leaderboard', [TriviaController::class, 'showLeaderboard'])->name('trivia.leaderboard');
+});
