@@ -7,7 +7,8 @@
     <section class="section-wrapper">
         <h1>Profile</h1>
 
-        <img id="avatar" src="{{ auth()->user() ? auth()->user()->image : '' }}" alt="profile-photo">
+        <img id="avatar" src="{{ auth()->user()->image ? auth()->user()->image : asset('assets/images/avatar-1.jpg') }}"
+            alt="profile-photo">
 
         <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
 
