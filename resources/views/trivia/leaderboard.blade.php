@@ -1,25 +1,20 @@
-@extends('layouts.app')
+@extends('partials.layouts.app')
+
+@section('title', 'Leaderboard')
 
 @section('content')
-    <div class="container">
-        <h2>Leaderboard</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>User</th>
-                    <th>Total Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($scores as $index => $score)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $score->user->name }}</td>
-                        <td>{{ $score->score }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="section-wrapper">
+        <h1>Leaderboard</h1>
+
+        <div class="rank-wrapper">
+            @foreach ($scores as $index => $score)
+                <div class="rank-item">
+                    <div>{{ $index + 1 }}.</div>
+                    <img src="{{ asset('assets/images/' . $score->user->image) }}" alt="user-1">
+                    <div>{{ $score->user->name }}</div>
+                    <div>{{ $score->score }}pts</div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
