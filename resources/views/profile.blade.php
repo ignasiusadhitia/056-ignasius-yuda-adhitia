@@ -44,5 +44,4 @@
         </form>
     </section>
 
-    >>>>>>> 86f418071df7aeb26dc3ee0dddde2e6864224544
 @endsection
