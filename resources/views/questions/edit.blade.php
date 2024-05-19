@@ -13,7 +13,8 @@
 
             <div class="field-wrapper">
                 <label for="question_text">Question Text:</label>
-                <input type="text" id="question_text" name="question_text" value="{{ old('question_text', $question->question_text)) }}" required>
+                <input type="text" id="question_text" name="question_text"
+                    value="{{ old('question_text', $question->question_text) }}" required>
             </div>
 
             <div class="field-wrapper">
@@ -21,7 +22,7 @@
                 <select name="category_id" id="category_id">
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach                    
+                    @endforeach
                 </select>
             </div>
 
@@ -44,25 +45,25 @@
             <div class="field-wrapper">
                 <label for="answer1">Answer 1:</label>
                 <input type="text" id="answer1" name="answer[]"
-                value="{{ old('answer.0', $question->answers[0]->answer_text) }}" required>
+                    value="{{ old('answer.0', $question->answers[0]->answer_text) }}" required>
             </div>
 
             <div class="field-wrapper">
                 <label for="answer2">Answer 2:</label>
                 <input type="text" id="answer2" name="answer[]"
-                value="{{ old('answer.1', $question->answers[1]->answer_text) }}" required>
+                    value="{{ old('answer.1', $question->answers[1]->answer_text) }}" required>
             </div>
 
             <div class="field-wrapper">
                 <label for="answer3">Answer 3:</label>
-                <input type="text" id="answer3" name="answer[]" 
-                value="{{ old('answer.2', $question->answers[2]->answer_text) }}" required>
+                <input type="text" id="answer3" name="answer[]"
+                    value="{{ old('answer.2', $question->answers[2]->answer_text) }}" required>
             </div>
 
             <div class="field-wrapper">
                 <label for="answer4">Answer 4:</label>
-                <input type="text" id="answer4" name="answer[]" 
-                value="{{ old('answer.3', $question->answers[3]->answer_text) }}" required>
+                <input type="text" id="answer4" name="answer[]"
+                    value="{{ old('answer.3', $question->answers[3]->answer_text) }}" required>
             </div>
 
             <div class="field-wrapper">
@@ -80,4 +81,3 @@
     </section>
 
 @endsection
-
