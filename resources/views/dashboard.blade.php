@@ -14,7 +14,7 @@
                     <p>Let's make this day productive</p>
                 </div>
                 @if (auth()->user()->image)
-                    <img src="{{ asset('images/' . auth()->user()->image) }}" alt="profile-photo">
+                    <img src="{{ asset('assets/images/' . auth()->user()->image) }}" alt="profile-photo">
                 @endif
             </div>
 
