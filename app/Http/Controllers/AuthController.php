@@ -82,7 +82,7 @@ class AuthController extends Controller
             $user->name = $request->name;
 
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            $request->image->move(public_path('assets/images'), $imageName);
             $user->image = $imageName;
 
             $user->save();
