@@ -28,4 +28,3 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Leaderboard (Optional)
     Route::get('/trivia/leaderboard', [TriviaController::class, 'showLeaderboard'])->name('trivia.leaderboard');
-});

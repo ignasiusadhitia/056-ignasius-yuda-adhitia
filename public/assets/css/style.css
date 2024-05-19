@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* :root {
+} */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 42em;
+}
+
+header,
+main,
+footer {
+    width: 100%;
+    padding: 1em;
+}
+
+h1,
+footer {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a {
+    display: block;
+}
+
+main {
+    margin-bottom: auto;
+}
+
+.section-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+form input,
+form select,
+form button {
+    width: 100%;
+}
+
+form label {
+    justify-self: start;
+}
+
+form .field-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+form button {
+    margin-top: 0.5em;
+}
+
+.questions-wrapper,
+.question-item,
+.trivia-wrapper,
+.user-wrapper {
+    width: 100%;
+}
+
+.questions-wrapper,
+.rank-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.question-item,
+.rank-item {
+    padding: 1em;
+    display: grid;
+    column-gap: 1em;
+    border: 1px solid #000;
+}
+
+.question-item {
+    grid-template-columns: 0.25fr 2fr 1.25fr 1fr 1fr;
+}
+
+.rank-item {
+    grid-template-columns: 0.25fr 0.5fr 3fr auto;
+    align-items: center;
+}
+
+#avatar,
+.rank-item img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#avatar {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.rank-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.trivia-wrapper {
+    padding: 1em;
+    border: 1px solid #000;
+}
+
+.trivia-wrapper img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.trivia-wrapper .question-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-weight: 500;
+    font-size: 1.25em;
+    font-style: italic;
+}
+
+.answers-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.answers-wrapper .answer-item {
+    padding: 1em;
+    border: 1px solid #000;
+    text-align: center;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.user-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.user-wrapper .greeting-wrapper {
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: 1fr auto;
+}
+
+.greeting-wrapper img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    align-items: center;
+}
+
+.user-wrapper .rank-wrapper {
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: repeat(2, auto);
+}
+
+.user-wrapper .rank-wrapper div {
+    border: 1px solid #000;
+    padding: 1em;
+}
+
+.user-wrapper .rank-wrapper div span {
+    display: block;
+}
+
+.menu {
+    margin: 1em 0;
+    display: grid;
+    column-gap: 1em;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    text-align: center;
+}
+
+.menu .menu-item {
+    min-height: 8em;
+    border: 1px solid #000;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
