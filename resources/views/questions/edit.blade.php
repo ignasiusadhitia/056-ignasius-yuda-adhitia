@@ -7,7 +7,7 @@
     <section class="section-wrapper">
         <h1>Edit Question</h1>
 
-        <form action="POST" method="{{ route('questions.update', $question->id) }}">
+        <form method="POST" action="{{ route('questions.update', $question->id) }}">
             @csrf
             @method('PUT')
 
