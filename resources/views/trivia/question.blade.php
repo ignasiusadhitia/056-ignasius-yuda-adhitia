@@ -7,9 +7,15 @@
         <h1>Trivia Play</h1>
 
         <div class="trivia-wrapper">
-            @if (session('status'))
-                <div class="alert alert-success">{{ session('status') }}</div>
-            @endif
+
+            <div id="statusAlert" class="alert alert-success" style="display: none">
+                <p id="statusMessage"></p>
+                <div>
+                    <button id="nextQuestionBtn">Next Question</button>
+                    <a href="{{ route('trivia.leaderboard') }}">Quit</a>
+                </div>
+            </div>
+
 
             <div class="trivia-wrapper">
                 <div class="question-wrapper">
@@ -38,8 +44,29 @@
         document.querySelectorAll('.btn-answer').forEach(button => {
             button.addEventListener('click', function() {
                 document.getElementById('answer_id').value = this.getAttribute('data-answer-id');
-                document.getElementById('triviaForm').submit()
+
+                fetch('{{ route('trivia.answer') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            question_id: '{{ $question->id }}',
+                            answer_id: this.getAttribute('data-answer-id')
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('statusMessage').textContent = data.status;
+                        document.getElementById('statusAlert').style.display = 'block';
+                    })
+                    .catch(error => console.error('Error:', error));
             })
+        })
+
+        document.getElementById('nextQuestionBtn').addEventListener('click', function() {
+            window.location.href = '{{ route('trivia.question') }}';
         })
     </script>
 @endsection

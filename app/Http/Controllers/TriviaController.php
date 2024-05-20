@@ -55,7 +55,10 @@ class TriviaController extends Controller
         $score->score += $points;
         $score->save();
 
-        return redirect()->route('trivia.question')->with('status', $isCorrect ? 'Correct!' : 'Wrong answer!');
+        return response()->json([
+            'status' => $isCorrect ? 'Correct!' : 'Wrong answer!',
+            'isCorrect' => $isCorrect
+        ]);
     }
 
 
