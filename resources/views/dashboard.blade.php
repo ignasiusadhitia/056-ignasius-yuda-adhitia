@@ -26,7 +26,7 @@
 
                 <div>
                     <span>Points</span>
-                    <span>100</span>
+                    <span>{{ auth()->user()->score->score }}pts</span>
                 </div>
             </div>
         </div>
