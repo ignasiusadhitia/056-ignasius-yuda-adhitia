@@ -15,19 +15,30 @@
                 </div>
                 @if (auth()->user()->image)
                     <img src="{{ asset('assets/images/' . auth()->user()->image) }}" alt="profile-photo">
+                @else
+                    <img src="{{ asset('assets/images/avatar-1.jpg') }}" alt="profile-photo">
                 @endif
             </div>
 
             <div class="rank-wrapper">
-                <div>
-                    <span>Rank</span>
-                    <span>12</span>
-                </div>
+                @php
+                    $currentUser = auth()->user();
+                    $currentUserScore = $currentUser->score ? $currentUser->score->score : null;
+                @endphp
 
-                <div>
-                    <span>Points</span>
-                    <span>{{ auth()->user()->score->score }}pts</span>
-                </div>
+                @if ($currentUserScore !== null && $userRank)
+                    <div>
+                        <span>Rank</span>
+                        <span>{{ $userRank }}</span>
+                    </div>
+
+                    <div>
+                        <span>Points</span>
+                        <span>{{ $currentUserScore }}pts</span>
+                    </div>
+                @else
+                    <p>You do not have a rank yet, Play some trivia games to earn points!</p>
+                @endif
             </div>
         </div>
 

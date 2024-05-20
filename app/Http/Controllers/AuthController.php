@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Score;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,9 +62,26 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function getCurrentUserRank()
+    {
+        $user = auth()->user();
+
+        $userRank = null;
+
+        if ($user) {
+            $userScore = $user->score ? $user->score->score : 0;
+
+            $userRank = Score::where('score', '>', $userScore)->count() + 1;
+        }
+
+        return $userRank;
+    }
+
     public function dashboard()
     {
-        return view('dashboard');
+        $userRank = $this->getCurrentUserRank();
+
+        return view('dashboard', compact('userRank'));
     }
 
     public function profile(Request $request)

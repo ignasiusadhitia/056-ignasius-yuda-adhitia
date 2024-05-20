@@ -66,6 +66,16 @@ class TriviaController extends Controller
     {
         $scores = Score::with('user')->orderByDesc('score')->take(10)->get();
 
-        return view('trivia.leaderboard', compact('scores'));
+        $user = auth()->user();
+
+        $userRank = null;
+
+        if ($user) {
+            $userScore = $user->score ? $user->score->score : 0;
+
+            $userRank = Score::where('score', '>', $userScore)->count() + 1;
+        }
+
+        return view('trivia.leaderboard', compact('scores', 'userRank'));
     }
 }
