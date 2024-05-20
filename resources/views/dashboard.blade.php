@@ -35,26 +35,26 @@
             <h2>Whatcha gonna do now?</h2>
 
             <div class="menu">
-                <div class="menu-item">
+                <a href="{{ route('trivia.question') }}" class="menu-item">
                     <span>
-                        Play Trivia
+                        Play
                     </span>
-                </div>
-                <div class="menu-item">
+                </a>
+                <a href="{{ route('questions.index') }}" class="menu-item">
                     <span>
-                        Create Question
+                        My Question
                     </span>
-                </div>
-                <div class="menu-item">
+                </a>
+                <a href="{{ route('profile') }}" class="menu-item">
                     <span>
-                        Edit Profile
+                        My Profile
                     </span>
-                </div>
-                <div class="menu-item">
+                </a>
+                <a href="{{ route('trivia.leaderboard') }}" class="menu-item">
                     <span>
-                        See Leaderboard
+                        Leaderboard
                     </span>
-                </div>
+                </a>
             </div>
         </div>
 
