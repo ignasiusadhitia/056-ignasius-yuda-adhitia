@@ -13,11 +13,7 @@
                     <h2>Hi, {{ auth()->user()->name }}</h2>
                     <p>Let's make this day productive</p>
                 </div>
-                @if (auth()->user()->image)
-                    <img src="{{ asset('assets/images/' . auth()->user()->image) }}" alt="profile-photo">
-                @else
-                    <img src="{{ asset('assets/images/avatar-1.jpg') }}" alt="profile-photo">
-                @endif
+                <x-user-avatar :user="auth()->user()" />
             </div>
 
             <div class="rank-wrapper">

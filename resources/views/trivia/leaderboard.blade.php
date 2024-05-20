@@ -23,7 +23,7 @@
 
                 <div class="rank-item">
                     <div>{{ $index + 1 }}.</div>
-                    <img src="{{ asset('assets/images/' . $score->user->image) }}" alt="{{ $score->user->name }}">
+                    <x-user-avatar :user="$score->user" />
                     <div>{{ $score->user->name }}</div>
                     <div>{{ $score->score }}pts</div>
                 </div>
@@ -32,7 +32,7 @@
             @if (!$isCurrentUserInTop10 && $userRank && $currentUserScore !== null)
                 <div class="rank-item">
                     <div>{{ $userRank }}.</div>
-                    <img src="{{ asset('assets/images/' . $currentUser->image) }}" alt="{{ $currentUser->name }}">
+                    <x-user-avatar :user="$currentUser" />
                     <div>{{ $currentUser->name }}</div>
                     <div>{{ $currentUserScore }}pts</div>
                 </div>
