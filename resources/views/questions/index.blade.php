@@ -20,18 +20,37 @@
                         <div>{{ $question->difficulty_level }}</div>
                         <div>
                             <a href="{{ route('questions.edit', $question) }}">Edit</a>
-                            <form action="{{ route('questions.destroy', $question) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit"
-                                    onclick="return confirm('Are you want to delete this question?')">Delete</button>
-                            </form>
+                            <button type="button" class="btn-delete" data-question-id="{{ $question->id }}">Delete</button>
                         </div>
                     </div>
                 @endforeach
             </div>
+        @endif
     </section>
 
-    @endif
+    <x-modal id="deleteModal" messageId='deleteMessage'>
+        <p>Are you sure you want to delete this question?</p>
+        <form id="deleteForm" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit">Confirm</button>
+            <button type="button" id="cancelDeleteBtn">Cancel</button>
+        </form>
+    </x-modal>
+
+    <script>
+        document.querySelectorAll('.btn-delete').forEach(button => {
+            button.addEventListener('click', function() {
+                const questionId = this.getAttribute('data-question-id');
+                const form = document.getElementById('deleteForm');
+                form.action = `/questions/${questionId}`;
+                document.getElementById('deleteModal').style.display = 'block';
+            })
+        })
+
+        document.getElementById('cancelDeleteBtn').addEventListener('click', function() {
+            document.getElementById('deleteModal').style.display = 'none';
+        });
+    </script>
 @endsection
