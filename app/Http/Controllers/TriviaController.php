@@ -76,6 +76,6 @@ class TriviaController extends Controller
             $userRank = Score::where('score', '>', $userScore)->count() + 1;
         }
 
-        return view('trivia.leaderboard', compact('scores', 'userRank'));
+        return view('leaderboard', compact('scores', 'userRank'));
     }
 }

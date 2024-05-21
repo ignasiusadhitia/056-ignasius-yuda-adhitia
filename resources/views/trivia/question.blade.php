@@ -13,7 +13,7 @@
                     <p id="statusMessage"></p>
                     <div>
                         <button id="nextQuestionBtn">Next Question</button>
-                        <a href="{{ route('trivia.leaderboard') }}">Quit</a>
+                        <a href="{{ route('leaderboard') }}">Quit</a>
                     </div>
                 </div>
             </div>

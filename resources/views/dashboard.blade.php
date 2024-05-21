@@ -57,7 +57,7 @@
                         My Profile
                     </span>
                 </a>
-                <a href="{{ route('trivia.leaderboard') }}" class="menu-item">
+                <a href="{{ route('leaderboard') }}" class="menu-item">
                     <span>
                         Leaderboard
                     </span>

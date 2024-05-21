@@ -24,13 +24,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'post'], 'profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Question Management
+
     Route::resource('questions', QuestionController::class)->except('show');
 
-    // Trivia Play and Answer Submission
     Route::get('/trivia/question', [TriviaController::class, 'showQuestion'])->name('trivia.question');
     Route::post('/trivia/answer', [TriviaController::class, 'submitAnswer'])->name('trivia.answer');
 
-    // Leaderboard (Optional)
-    Route::get('/trivia/leaderboard', [TriviaController::class, 'showLeaderboard'])->name('trivia.leaderboard');
+    Route::get('/leaderboard', [TriviaController::class, 'showLeaderboard'])->name('leaderboard');
 });
