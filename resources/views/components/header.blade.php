@@ -1,14 +1,13 @@
-<header class="container">
-    <nav>
-        @if (Route::has('login'))
-            <x-navigation-link href="/" text="Jabar Trivia" />
-        @endif
-
-        @auth
-            <x-navigation-link href="{{ url('/dashboard') }}" text="Dashboard"
-                active="{{ request()->routeIs('dashboard') }}" />
-        @else
-            <x-navigation-link href="{{ route('login') }}" text="Log in" />
-        @endauth
-    </nav>
-</header>
+@if ($shouldShow)
+    <header class="container">
+        <nav>
+            @if (Auth::check())
+                <h1>{{ $title }}</h1>
+                <a href="{{ route('dashboard') }}">Back</a>
+            @else
+                <a href="/">Jabar Trivia</a>
+                <a href="{{ route('login') }}">Login</a>
+            @endif
+        </nav>
+    </header>
+@endif

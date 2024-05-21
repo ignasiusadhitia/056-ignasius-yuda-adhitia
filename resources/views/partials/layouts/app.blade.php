@@ -18,22 +18,7 @@
 </head>
 
 <body>
-    <header class="container">
-        <nav>
-            @if (Route::has('login'))
-                <a href="/">Jabar Trivia</a>
-                @auth
-                    <a href="{{ url('/dashboard') }}">
-                        Dashboard
-                    </a>
-                @else
-                    <a href="{{ route('login') }}">
-                        Log in
-                    </a>
-                @endauth
-            @endif
-        </nav>
-    </header>
+    <x-header :title="View::getSection('title') ?? config('app.name')" />
 
     <main class="container">
         <x-alert />
