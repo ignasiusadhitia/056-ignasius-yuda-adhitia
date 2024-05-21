@@ -42,7 +42,7 @@
             <h2>Whatcha gonna do now?</h2>
 
             <div class="menu">
-                <a href="{{ route('trivia.question') }}" class="menu-item">
+                <a href="{{ route('trivia.index') }}" class="menu-item">
                     <span>
                         Play
                     </span>

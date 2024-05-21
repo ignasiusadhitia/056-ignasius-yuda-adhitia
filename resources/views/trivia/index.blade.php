@@ -100,7 +100,7 @@
         })
 
         document.getElementById('nextQuestionBtn').addEventListener('click', function() {
-            window.location.href = '{{ route('trivia.question') }}';
+            window.location.href = '{{ route('trivia.index') }}';
         })
     </script>
 @endsection

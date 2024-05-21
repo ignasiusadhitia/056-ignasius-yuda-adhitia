@@ -27,8 +27,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('questions', QuestionController::class)->except('show');
 
-    Route::get('/trivia/question', [TriviaController::class, 'showQuestion'])->name('trivia.question');
-    Route::post('/trivia/answer', [TriviaController::class, 'submitAnswer'])->name('trivia.answer');
+    Route::prefix('trivia')->group(function () {
+        Route::get('/', [TriviaController::class, 'showQuestion'])->name('trivia.index');
+        Route::post('/answer', [TriviaController::class, 'submitAnswer'])->name('trivia.answer');
+    });
 
     Route::get('leaderboard', [TriviaController::class, 'showLeaderboard'])->name('leaderboard');
 });

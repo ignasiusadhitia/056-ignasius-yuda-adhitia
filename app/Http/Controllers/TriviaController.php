@@ -18,7 +18,7 @@ class TriviaController extends Controller
     {
         $question = Question::inRandomOrder()->with('answers')->first();
 
-        return view('trivia.question', compact('question'));
+        return view('trivia.index', compact('question'));
     }
 
     public function submitAnswer(Request $request)
