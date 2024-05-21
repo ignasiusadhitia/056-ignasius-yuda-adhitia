@@ -30,5 +30,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/trivia/question', [TriviaController::class, 'showQuestion'])->name('trivia.question');
     Route::post('/trivia/answer', [TriviaController::class, 'submitAnswer'])->name('trivia.answer');
 
-    Route::get('/leaderboard', [TriviaController::class, 'showLeaderboard'])->name('leaderboard');
+    Route::get('leaderboard', [TriviaController::class, 'showLeaderboard'])->name('leaderboard');
 });
