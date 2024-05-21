@@ -36,17 +36,7 @@
     </header>
 
     <main class="container">
-        @session('success')
-            <div id="success-alert">
-                {{ session('success') }}
-            </div>
-        @endsession
-
-        @session('error')
-            <div id="error-alert">
-                {{ session('error') }}
-            </div>
-        @endsession
+        <x-alert />
 
         @yield('content')
     </main>
