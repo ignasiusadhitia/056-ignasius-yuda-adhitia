@@ -1,6 +1,6 @@
 @extends('partials.layouts.app')
 
-@section('title', 'My Question')
+@section('title', 'My Questions')
 
 @section('content')
 
