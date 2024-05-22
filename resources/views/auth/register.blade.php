@@ -8,47 +8,23 @@
 
         <h1>Register</h1>
 
-        <form action="" method="POST">
-            @csrf
+        <x-form action="{{ route('register') }}" method="POST">
+            <x-input id="name" name="name" type="text" label="Name:" />
+            <x-error field="name" />
 
-            <div class="field-wrapper">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name">
-                @error('name')
-                    <div>
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
-            </div>
+            <x-input id="email" name="email" type="email" label="Email:" />
+            <x-error field="email" />
 
-            <div class="field-wrapper">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-                @error('email')
-                    <div>
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
-            </div>
+            <x-input id="password" name="password" type="password" label="Password:" />
+            <x-error field="password" />
 
-            <div class="field-wrapper">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-                @error('password')
-                    <div>
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
-            </div>
-
-            <div>
-                <button type="submit">Register</button>
-            </div>
+            <x-button>Register</x-button>
 
             <div>
                 <p>Already have an account? <a href="{{ route('login') }}">Login</a></p>
             </div>
-        </form>
+        </x-form>
+
     </section>
 
 @endsection
