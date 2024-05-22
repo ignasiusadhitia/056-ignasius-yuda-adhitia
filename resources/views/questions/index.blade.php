@@ -6,7 +6,7 @@
 
     <section class="section-wrapper">
         <div>
-            <a href="{{ route('questions.create') }}">Add</a>
+            <a href="{{ route('questions.create') }}">Add Question</a>
         </div>
         @if ($questions->isEmpty())
             <p>
