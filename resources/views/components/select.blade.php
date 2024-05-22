@@ -2,9 +2,11 @@
 
 <div class="field-wrapper">
     <label for="{{ $id }}">{{ $label }}</label>
-    <select name="{{ $name }}" id="{{ $id }}">
+    <select id="{{ $id }}" name="{{ $name }}">
         @foreach ($options as $option)
-            <option value="{{ $option['value'] }}">{{ $option['label'] }}</option>
+            <option value="{{ $option['value'] }}" {{ $option['selected'] ? 'selected' : '' }}>
+                {{ $option['label'] }}
+            </option>
         @endforeach
     </select>
 </div>
