@@ -6,6 +6,9 @@
 
     <section class="section-wrapper">
         <h1>My Questions</h1>
+        <div>
+            <a href="{{ route('questions.create') }}">Create</a>
+        </div>
         @if ($questions->isEmpty())
             <p>
                 You haven't created any questions yet.
