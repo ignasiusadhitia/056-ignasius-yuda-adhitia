@@ -9,39 +9,17 @@
 
         <x-user-avatar :user="auth()->user()" id="avatar" />
 
-        <form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
+        <x-form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
+            <x-input id="name" name="name" type="text" label="Name:" :value="auth()->user()->name" />
+            <x-error field="name" />
 
-            @csrf
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ auth()->user() ? auth()->user()->name : '' }}">
-                @error('name')
-                    <div>
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
-            </div>
+            <x-input id="email" name="email" type="email" label="Email:" :value="auth()->user()->email" disabled="true" />
 
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"
-                    value="{{ auth()->user() ? auth()->user()->email : '' }}" disabled>
-            </div>
+            <x-input id="image" name="image" type="file" label="Image:" />
+            <x-error field="image" />
 
-            <div>
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image">
-                @error('image')
-                    <div>
-                        <span>{{ $message }}</span>
-                    </div>
-                @enderror
-            </div>
-
-            <div>
-                <button type="submit">Save Changes</button>
-            </div>
-        </form>
+            <x-button>Save Changes</x-button>
+        </x-form>
     </section>
 
 @endsection

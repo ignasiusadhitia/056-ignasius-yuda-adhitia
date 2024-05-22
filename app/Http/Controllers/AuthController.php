@@ -105,7 +105,7 @@ class AuthController extends Controller
 
             $user->save();
 
-            return to_route('profile')->with('success', 'Successfully, profile updated');
+            return to_route('profile')->with('success', 'Profile updated successfully!');
         }
 
         return view('profile');
