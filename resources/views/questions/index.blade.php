@@ -5,9 +5,8 @@
 @section('content')
 
     <section class="section-wrapper">
-        <h1>My Questions</h1>
         <div>
-            <a href="{{ route('questions.create') }}">Create</a>
+            <a href="{{ route('questions.create') }}">Add</a>
         </div>
         @if ($questions->isEmpty())
             <p>

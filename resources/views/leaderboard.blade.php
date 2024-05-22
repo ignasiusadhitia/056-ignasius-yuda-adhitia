@@ -4,7 +4,6 @@
 
 @section('content')
     <div class="section-wrapper">
-        <h1>Leaderboard</h1>
 
         <div class="rank-wrapper">
             @php

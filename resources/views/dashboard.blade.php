@@ -5,8 +5,6 @@
 @section('content')
 
     <section class="section-wrapper">
-        <h1>Dashboard</h1>
-
         <div class="user-wrapper">
             <div class="greeting-wrapper">
                 <div>
