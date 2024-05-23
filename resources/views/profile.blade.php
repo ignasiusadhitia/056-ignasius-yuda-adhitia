@@ -5,7 +5,6 @@
 @section('content')
 
     <section class="section-wrapper">
-        <h1>Profile</h1>
 
         <x-user-avatar :user="auth()->user()" id="avatar" />
 

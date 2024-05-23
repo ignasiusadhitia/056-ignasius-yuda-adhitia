@@ -1,7 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-/* :root {
-} */
+:root {
+    --primary-color: #7fbc8c;
+    --secondary-color: #f4d738;
+    --highlight-color: #ff69b4;
+    --background-color: #e5df88;
+    --text-color: #000000;
+    --text-disabled-color: #777777;
+    --border-radius: 2px;
+    --padding: 0 16px;
+    --border-width: 1px;
+    --border-color: #000000;
+    --input-background-color: #ffffff;
+    --input-disabled-background-color: #dcdcdc;
+    --input-focus-color: #9723c9;
+    --box-shadow: 6px 4px 0px #000000;
+}
 
 *,
 *::before,
@@ -21,6 +35,7 @@ body {
     max-width: 100vw;
     display: flex;
     flex-direction: column;
+    background-color: var(--background-color);
 }
 
 img,
@@ -33,6 +48,21 @@ input,
 button,
 select {
     font: inherit;
+}
+
+button {
+    height: 2em;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+
+button:hover {
+    box-shadow: none;
 }
 
 p,
@@ -73,6 +103,12 @@ nav {
     justify-content: space-between;
 }
 
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
 nav a {
     display: block;
 }
@@ -96,9 +132,48 @@ form {
 }
 
 form input,
-form select,
+form select {
+    width: 100%;
+    height: 2em;
+    border-radius: var(--border-radius);
+    background-color: var(--input-background-color);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+
+input[type="file"] {
+    padding: 0;
+}
+
+input[type="file"]::file-selector-button {
+    padding: var(--padding);
+    height: 100%;
+    border: none;
+    background-color: var(--background-color);
+}
+
+form input,
+form select {
+    padding: var(--padding);
+}
+
+form input:focus,
+form select:focus {
+    border-color: var(--input-focus-color);
+    outline: none;
+    box-shadow: none;
+    color: #000;
+}
+
+form input:disabled,
+form select:disabled {
+    background-color: var(--input-disabled-background-color);
+    color: var(--text-disabled-color);
+}
+
 form button {
     width: 100%;
+    background-color: var(--primary-color);
 }
 
 form label {
@@ -147,20 +222,25 @@ form button {
 }
 
 #avatar,
-.rank-item img {
+.rank-item img,
+.greeting-wrapper img {
     border-radius: 50%;
     object-fit: cover;
+    border: var(--border-width) solid var(--border-color);
 }
 
 #avatar {
     width: 150px;
     height: 150px;
     margin: auto;
+    filter: drop-shadow(6px 4px 0px var(--border-color));
 }
 
-.rank-item img {
+.rank-item img,
+.greeting-wrapper img {
     width: 50px;
     height: 50px;
+    filter: drop-shadow(3px 2px 0px var(--border-color));
 }
 
 .trivia-wrapper {
