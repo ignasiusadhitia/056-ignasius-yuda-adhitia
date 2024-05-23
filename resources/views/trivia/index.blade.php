@@ -4,8 +4,6 @@
 
 @section('content')
     <section class="section-wrapper">
-        <h1>Trivia Play</h1>
-
         <div class="trivia-wrapper">
 
             <x-modal id="statusModal" messageId="statusMessage">
@@ -19,7 +17,9 @@
                     @if ($question->image_url)
                         <img src="{{ $question->image_url }}" alt="question-image">
                     @endif
-                    <p>{{ $question->question_text }}</p>
+                    <div>
+                        <p>{{ $question->question_text }}</p>
+                    </div>
                 </div>
             </div>
             <form id="triviaForm" action="{{ route('trivia.answer') }}" method="POST" class="answers-wrapper">
