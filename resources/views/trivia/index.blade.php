@@ -7,8 +7,10 @@
         <div class="trivia-wrapper">
 
             <x-modal id="statusModal" messageId="statusMessage">
+                <a href="{{ route('leaderboard') }}">
+                    <span>Quit</span>
+                </a>
                 <button id="nextQuestionBtn">Next Question</button>
-                <a href="{{ route('leaderboard') }}">Quit</a>
             </x-modal>
 
 
