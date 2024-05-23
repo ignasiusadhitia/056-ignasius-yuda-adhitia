@@ -3,6 +3,7 @@
 :root {
     --primary-color: #7fbc8c;
     --secondary-color: #f4d738;
+    --tertiary-color: #90ee90;
     --highlight-color: #ff69b4;
     --background-color: #e5df88;
     --text-color: #000000;
@@ -120,6 +121,52 @@ nav a {
 
 nav a:hover {
     box-shadow: none;
+}
+
+.bottom-navigation {
+    position: fixed;
+    max-width: 42em;
+    bottom: 1em;
+    box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+
+.bottom-navigation ul {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bottom-navigation li {
+    flex: 1;
+    text-align: center;
+}
+
+.bottom-navigation a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-decoration: none;
+    background-color: var(--input-background-color);
+    color: var(--border-color);
+    font-size: 0.75em;
+    border: none;
+    box-shadow: none;
+}
+
+.bottom-navigation a:hover {
+    background-color: var(--primary-color);
+}
+
+.bottom-navigation a i {
+    font-size: 20px;
 }
 
 main {
