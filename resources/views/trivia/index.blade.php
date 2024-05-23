@@ -12,16 +12,16 @@
             </x-modal>
 
 
-            <div class="trivia-wrapper">
-                <div class="question-wrapper">
-                    @if ($question->image_url)
-                        <img src="{{ $question->image_url }}" alt="question-image">
-                    @endif
-                    <div>
-                        <p>{{ $question->question_text }}</p>
-                    </div>
+
+            <div class="question-wrapper">
+                @if ($question->image_url)
+                    <img src="{{ $question->image_url }}" alt="question-image">
+                @endif
+                <div>
+                    <p>{{ $question->question_text }}</p>
                 </div>
             </div>
+
             <form id="triviaForm" action="{{ route('trivia.answer') }}" method="POST" class="answers-wrapper">
                 @csrf
                 <input type="hidden" name="question_id" value="{{ $question->id }}">

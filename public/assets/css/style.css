@@ -253,6 +253,19 @@ form button {
     width: 100%;
 }
 
+.trivia-wrapper {
+    background-color: var(--input-background-color);
+    padding: 1em;
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+
+.trivia-wrapper img {
+    border-radius: var(--border-radius);
+    border: var(--border-width) solid var(--border-color);
+}
+
 .questions-wrapper,
 .rank-wrapper {
     display: flex;
