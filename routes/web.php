@@ -12,8 +12,7 @@ Route::get('/', function () {
     }
 
     return view('welcome');
-});
-
+})->name('welcome');
 
 Route::group(['middleware' => ['guest']], function () {
     Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
