@@ -67,11 +67,14 @@
     --text-xs-normal: 400 0.75rem/1rem "Poppins", sans-serif;
 
     /* BORDER */
-    --border: 1px solid var(var(--black));
+    --border: 1px solid var(--black);
     --border-radius: 4px;
 
     /* BOX-SHADOW */
-    --box-shadow: 6px 4px 0px (var(var(--black)));
+    --box-shadow: 6px 4px 0px var(--black);
+
+    /* OUTLINE */
+    --outline: 3px solid var(--primary-01);
 }
 
 *,
@@ -93,6 +96,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--gray-200);
+    color: var(--black);
 }
 
 img,
@@ -105,21 +109,31 @@ input,
 button,
 select {
     font: inherit;
+    height: 3rem;
+    border-radius: var(--border-radius);
+    border: var(--border);
 }
 
-button {
-    height: 2em;
-    font-weight: 600;
-    cursor: pointer;
-    /* background-color: var(--primary-color); */
-    /* border-radius: var(--border-radius); */
-    /* color: var(--text-color); */
-    /* border: var(--border-width) solid var(--border-color); */
+input,
+select {
+    width: 100%;
+}
+
+input:focus,
+select:focus {
+    /* border-color: var(--input-focus-color); */
+    outline: var(--outline);
     /* box-shadow: var(--box-shadow); */
 }
 
+button {
+    font-weight: 600;
+    cursor: pointer;
+    font: var(--text-md-semibold);
+}
+
 button:hover {
-    box-shadow: none;
+    box-shadow: var(--box-shadow);
 }
 
 p,
@@ -134,7 +148,7 @@ h6 {
 
 a {
     text-decoration: none;
-    /* color: var(--border-color); */
+    color: var(--black);
 }
 
 #root,
@@ -160,6 +174,14 @@ footer {
     text-align: center;
 }
 
+h1 {
+    font: var(--display-md-bold);
+}
+
+footer {
+    font: var(--text-xs-normal);
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -174,10 +196,6 @@ nav div {
 nav a {
     padding: 0.5em 1em;
     display: block;
-    /* border-radius: var(--border-radius); */
-    /* background-color: var(--primary-color); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
 }
 
 nav a:hover {
@@ -187,12 +205,11 @@ nav a:hover {
 .bottom-navigation {
     position: fixed;
     max-width: 42em;
-    bottom: 1em;
-    box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
+    bottom: 1rem;
     z-index: 1000;
-    /* border-radius: var(--border-radius); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
+    border-radius: var(--border-radius);
+    border: var(--border);
+    box-shadow: var(--box-shadow);
 }
 
 .bottom-navigation ul {
@@ -246,17 +263,24 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    background-color: var(--white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
 }
 
-form input,
-form select {
-    width: 100%;
-    height: 2em;
-    /* border-radius: var(--border-radius); */
-    /* background-color: var(--input-background-color); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
+form > button {
+    background-color: var(--primary-01);
 }
+
+/* form input, */
+/* form select { */
+/* border-radius: var(--border-radius); */
+/* background-color: var(--input-background-color); */
+/* border: var(--border-width) solid var(--border-color); */
+/* box-shadow: var(--box-shadow); */
+/* } */
 
 input[type="file"] {
     padding: 0;
@@ -274,14 +298,6 @@ input[type="file"]::file-selector-button {
 form select { */
 /* padding: var(--padding); */
 /* } */
-
-form input:focus,
-form select:focus {
-    /* border-color: var(--input-focus-color); */
-    outline: none;
-    box-shadow: none;
-    color: #000;
-}
 
 /* form input:disabled,
 form select:disabled { */
