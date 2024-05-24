@@ -76,6 +76,11 @@ h6 {
     overflow-wrap: break-word;
 }
 
+a {
+    text-decoration: none;
+    color: var(--border-color);
+}
+
 #root,
 #__next {
     isolation: isolate;
@@ -154,7 +159,7 @@ nav a:hover {
     justify-content: center;
     padding: 10px;
     text-decoration: none;
-    background-color: var(--input-background-color);
+    background-color: var(--primary-color);
     color: var(--border-color);
     font-size: 0.75em;
     border: none;
@@ -162,7 +167,7 @@ nav a:hover {
 }
 
 .bottom-navigation a:hover {
-    background-color: var(--primary-color);
+    background-color: var(--input-background-color);
 }
 
 .bottom-navigation a i {
@@ -205,7 +210,8 @@ input[type="file"]::file-selector-button {
     padding: var(--padding);
     height: 100%;
     border: none;
-    background-color: var(--background-color);
+    background-color: var(--primary-color);
+    font-weight: 600;
 }
 
 form input,
@@ -315,10 +321,15 @@ form button {
     border: var(--border-width) solid var(--border-color);
 }
 
-.trivia-wrapper .question-wrapper {
+.trivia-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+}
+
+.question-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     font-weight: 500;
     font-size: 1.25em;
 }
@@ -335,15 +346,24 @@ form button {
 
 .answers-wrapper {
     margin-top: 1em;
+}
+
+.answers-wrapper > div {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .answers-wrapper .answer-item {
+    min-width: 49%;
     text-align: center;
     font-weight: 400;
     cursor: pointer;
+}
+
+.answer-item button {
+    min-height: 3em;
+    background-color: var(--secondary-color);
 }
 
 .modal {
@@ -378,6 +398,19 @@ form button {
     justify-content: space-between;
 }
 
+.modal-content i {
+    font-size: 6em;
+    padding: 0.5em;
+}
+
+.modal-content .fa-check-circle {
+    color: green;
+}
+
+.modal-content .fa-times-circle {
+    color: red;
+}
+
 .modal-content p {
     font-weight: 500;
     font-size: 2em;
@@ -389,6 +422,11 @@ form button {
     gap: 1.5em;
 }
 
+.modal-content div a,
+.modal-content div button {
+    min-height: 2.5em;
+    min-width: 10em;
+}
 .modal-content div a {
     height: 2em;
     padding: var(--padding);
@@ -399,6 +437,7 @@ form button {
     font-weight: 600;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .modal-content div a:hover {
