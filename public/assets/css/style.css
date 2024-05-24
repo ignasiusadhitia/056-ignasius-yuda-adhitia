@@ -159,7 +159,7 @@ nav a:hover {
     justify-content: center;
     padding: 10px;
     text-decoration: none;
-    background-color: var(--primary-color);
+    background-color: var(--input-background-color);
     color: var(--border-color);
     font-size: 0.75em;
     border: none;
@@ -167,7 +167,7 @@ nav a:hover {
 }
 
 .bottom-navigation a:hover {
-    background-color: var(--input-background-color);
+    background-color: var(--primary-color);
 }
 
 .bottom-navigation a i {
