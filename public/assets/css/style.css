@@ -606,11 +606,20 @@ svg {
 .question-item:hover {
     box-shadow: var(--box-shadow);
 }
+.question-item > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-item > div:first-child,
+.question-item > div:nth-child(2) {
+    justify-content: start;
+}
 
 .question-item .action-wrapper {
-    display: flex;
+    justify-content: end;
     gap: 0.5rem;
-    background-color: var();
 }
 
 .edit-button,
