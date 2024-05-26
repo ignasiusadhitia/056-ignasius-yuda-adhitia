@@ -835,3 +835,13 @@ svg {
     background-color: var(--primary-01);
     font: var(--text-sm-semibold);
 }
+
+/* REGISTER */
+.register-button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.register-button-wrapper button {
+    font: var(--text-sm-medium);
+    background-color: var(--primary-01);
+}

@@ -14,7 +14,7 @@
             to
             unleash your inner Jabar expert and embark on a fun-filled learning adventure!</p>
 
-        <a href="{{ route('register') }}">
+        <a href="{{ route('register') }}" class="register-button-wrapper">
             <button>Register</button>
         </a>
     </section>
