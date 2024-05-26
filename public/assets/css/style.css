@@ -4,6 +4,8 @@
     /* COLORS */
     --black: #000000;
     --white: #ffffff;
+    --gray-500: #78716c;
+    --gray-400: #a8a29e;
     --gray-300: #d6d3d1;
     --gray-200: #e7e5e4;
     --gray-100: #f4f4f0;
@@ -403,19 +405,23 @@ select:focus {
 }
 
 input[type="file"] {
-    padding: 0;
+    padding: 0.125rem;
 }
 
 input[type="file"]::file-selector-button {
     height: 100%;
-    border: none;
-    font-weight: 600;
+    padding: 0 1rem;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    background-color: var(--black);
+    color: var(--white);
+    cursor: pointer;
 }
 
 input:disabled,
 form select:disabled {
-    background-color: var(--input-disabled-background-color);
-    color: var(--text-disabled-color);
+    color: var(--gray-500);
+    border: 1px solid var(--gray-500);
 }
 
 label {
