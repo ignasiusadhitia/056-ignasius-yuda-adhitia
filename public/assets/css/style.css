@@ -285,14 +285,14 @@ nav .back-button {
     height: 2.25rem;
     border: var(--border);
     border-radius: 50%;
-    background-color: var(--primary-01);
+    background-color: var(--white);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 nav .back-button:hover {
-    box-shadow: var(--box-shadow);
+    background-color: var(--primary-01);
 }
 
 nav .logo {
@@ -364,7 +364,7 @@ nav .login-button:hover {
 
 .menu .menu-item {
     min-height: 8em;
-    border: 1px solid #000;
+    border: var(--border);
     padding: 1em;
     display: flex;
     justify-content: center;
