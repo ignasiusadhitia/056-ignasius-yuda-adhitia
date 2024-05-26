@@ -10,7 +10,7 @@
                 <a href="{{ route('leaderboard') }}">
                     <span>Quit</span>
                 </a>
-                <button id="nextQuestionBtn">Next Question</button>
+                <button id="nextQuestionButton">Next Question</button>
             </x-modal>
 
 
@@ -81,7 +81,7 @@
                 })
             })
 
-            document.getElementById('nextQuestionBtn').addEventListener('click', function() {
+            document.getElementById('nextQuestionButton').addEventListener('click', function() {
                 window.location.href = '{{ route('trivia.index') }}';
             })
         });

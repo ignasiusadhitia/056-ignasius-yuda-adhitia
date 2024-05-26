@@ -576,7 +576,7 @@ svg {
 .modal-content div {
     margin: 0 auto;
     display: flex;
-    gap: 1.5em;
+    gap: 1rem;
 }
 
 .modal-content div a,
@@ -772,4 +772,22 @@ svg {
     cursor: pointer;
     font: var(--text-sm-medium);
     background-color: var(--primary-01);
+}
+
+#statusModal a {
+    height: 3rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+}
+
+#statusModal a:hover {
+    box-shadow: var(--box-shadow);
+}
+
+#statusModal button {
+    background-color: var(--primary-01);
+}
+
+#statusMessage {
+    margin-bottom: 1.5rem;
 }
