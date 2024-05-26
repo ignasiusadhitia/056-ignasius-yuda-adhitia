@@ -132,20 +132,6 @@ a {
 }
 
 /* LAYOUT */
-
-.container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 42em;
-}
-
-.section-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
 header,
 main,
 footer {
@@ -159,6 +145,19 @@ main {
 
 footer {
     font: var(--text-xs-normal);
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 42em;
+}
+
+.section-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .questions-wrapper,
@@ -193,11 +192,7 @@ footer {
 }
 
 .trivia-wrapper {
-    /* background-color: var(--input-background-color); */
     padding: 1em;
-    /* border-radius: var(--border-radius); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
 }
 
 .trivia-wrapper {
@@ -216,8 +211,6 @@ footer {
 .question-wrapper div {
     min-height: 5em;
     padding: 1em;
-    /* border-radius: var(--border-radius); */
-    /* border: var(--border-width) solid var(--border-color); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,7 +235,6 @@ footer {
 
 .answer-item button {
     min-height: 3em;
-    /* background-color: var(--secondary-color); */
 }
 
 .user-wrapper {
@@ -327,9 +319,9 @@ nav a:hover {
     box-shadow: none;
 }
 
-/* .bottom-navigation a:hover { */
-/* background-color: var(--primary-color); */
-/* } */
+.bottom-navigation a:hover {
+    background-color: var(--primary-color);
+}
 
 .bottom-navigation a i {
     font-size: 20px;
@@ -378,17 +370,11 @@ input,
 select {
     padding: 0 1rem;
     width: 100%;
-    /* border-radius: var(--border-radius); */
-    /* background-color: var(--input-background-color); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
 }
 
 input:focus,
 select:focus {
-    /* border-color: var(--input-focus-color); */
     outline: var(--outline);
-    /* box-shadow: var(--box-shadow); */
 }
 
 input[type="file"] {
@@ -396,18 +382,16 @@ input[type="file"] {
 }
 
 input[type="file"]::file-selector-button {
-    /* padding: var(--padding); */
     height: 100%;
     border: none;
-    /* background-color: var(--primary-color); */
     font-weight: 600;
 }
 
-/* input:disabled,
-form select:disabled { */
-/* background-color: var(--input-disabled-background-color); */
-/* color: var(--text-disabled-color); */
-/* } */
+input:disabled,
+form select:disabled {
+    background-color: var(--input-disabled-background-color);
+    color: var(--text-disabled-color);
+}
 
 label {
     font: var(--text-sm-medium);
@@ -466,29 +450,24 @@ svg {
 .greeting-wrapper img {
     border-radius: 50%;
     object-fit: cover;
-    /* border: var(--border-width) solid var(--border-color); */
 }
 
 #avatar {
     width: 150px;
     height: 150px;
     margin: auto;
-    /* filter: drop-shadow(6px 4px 0px var(--border-color)); */
 }
 
 .rank-item img,
 .greeting-wrapper img {
     width: 50px;
     height: 50px;
-    /* filter: drop-shadow(3px 2px 0px var(--border-color)); */
 }
 
 .trivia-wrapper img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    /* border-radius: var(--border-radius); */
-    /* border: var(--border-width) solid var(--border-color); */
 }
 
 .greeting-wrapper img {
@@ -522,9 +501,6 @@ svg {
     min-height: 10em;
     max-width: 500px;
     text-align: center;
-    /* border-radius: var(--border-radius); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
 }
 
 .modal-content {
@@ -564,11 +540,7 @@ svg {
 }
 .modal-content div a {
     height: 2em;
-    /* padding: var(--padding); */
-    /* border: var(--border-width) solid var(--border-color); */
-    /* box-shadow: var(--box-shadow); */
     text-decoration: none;
-    /* color: var(--border-color); */
     font-weight: 600;
     display: flex;
     align-items: center;
