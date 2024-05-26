@@ -165,7 +165,8 @@ footer {
 .questions-wrapper,
 .question-item,
 .trivia-wrapper,
-.user-wrapper {
+.user-wrapper,
+.action-wrapper {
     width: 100%;
 }
 
@@ -266,6 +267,10 @@ footer {
     display: block;
 }
 
+.action-wrapper {
+    display: flex;
+    justify-content: end;
+}
 /* NAVIGATION */
 nav {
     display: flex;
@@ -575,4 +580,95 @@ svg {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* MY QUESTIONS COMPONENTS */
+.action-wrapper .add-question-button {
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--primary-01);
+    font: var(--text-sm-medium);
+    padding: 0.5rem 2.5rem;
+}
+
+.action-wrapper .add-question-button:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.question-item {
+    background-color: var(--white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    font: var(--text-sm-medium);
+    cursor: pointer;
+}
+
+.question-item:hover {
+    box-shadow: var(--box-shadow);
+}
+
+.question-item .action-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var();
+}
+
+.edit-button,
+.delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    color: var(--danger-01);
+}
+
+.pill {
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.25rem;
+    border: var(--border);
+}
+
+.easy {
+    background-color: var(--success-01);
+}
+
+.medium {
+    background-color: var(--warning-01);
+}
+
+.hard {
+    background-color: var(--danger-01);
+}
+
+.geography {
+    background-color: var(--tomato-01);
+}
+
+.history {
+    background-color: var(--gray-100);
+}
+
+.culture {
+    background-color: var(--topaz-01);
+}
+
+.flora {
+    background-color: var(--celadon-green-01);
+}
+
+.tourism {
+    background-color: var(--primary-02);
+}
+
+.languages {
+    background-color: var(--warning-02);
+}
+
+.figure {
+    background-color: var(--danger-02);
 }

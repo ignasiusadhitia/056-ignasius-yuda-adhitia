@@ -5,8 +5,8 @@
 @section('content')
 
     <section class="section-wrapper">
-        <div>
-            <a href="{{ route('questions.create') }}">Add Question</a>
+        <div class="action-wrapper">
+            <a href="{{ route('questions.create') }}" class="add-question-button">Add Question</a>
         </div>
         @if ($questions->isEmpty())
             <p>
@@ -17,12 +17,24 @@
                 @foreach ($questions as $key => $question)
                     <div class="question-item">
                         <div>{{ $key + 1 }}</div>
-                        <div>{{ $question->question_text }}</div>
-                        <div>{{ $question->category->name }}</div>
-                        <div>{{ $question->difficulty_level }}</div>
+                        <div>{{ Str::limit($question->question_text, 15) }}</div>
                         <div>
-                            <a href="{{ route('questions.edit', $question) }}">Edit</a>
-                            <button type="button" class="btn-delete" data-question-id="{{ $question->id }}">Delete</button>
+                            <span class="pill {{ Str::lower($question->category->name) }}">
+                                {{ $question->category->name }}
+                            </span>
+                        </div>
+                        <div>
+                            <span class="pill {{ $question->difficulty_level }}">
+                                {{ $question->difficulty_level }}
+                            </span>
+                        </div>
+                        <div class="action-wrapper">
+                            <a href="{{ route('questions.edit', $question) }}" class="edit-button">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a type="button" class="delete-button" data-question-id="{{ $question->id }}">
+                                <i class="fas fa-trash"></i>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -42,7 +54,7 @@
     </x-modal>
 
     <script>
-        document.querySelectorAll('.btn-delete').forEach(button => {
+        document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', function() {
                 const questionId = this.getAttribute('data-question-id');
                 const form = document.getElementById('deleteForm');
