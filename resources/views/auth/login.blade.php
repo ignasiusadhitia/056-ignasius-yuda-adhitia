@@ -5,9 +5,10 @@
 @section('content')
 
     <section class="section-wrapper">
-        <h1>Login</h1>
 
-        <x-form action="{{ route('login') }}" method="POST">
+        <x-form action="{{ route('login') }}" method="POST" class="auth-form">
+            <h1>Login</h1>
+
             <x-input id="email" name="email" type="email" label="Email:" />
             <x-error field="email" />
 

@@ -6,9 +6,9 @@
 
     <section class="section-wrapper">
 
-        <h1>Register</h1>
+        <x-form action="{{ route('register') }}" method="POST" class="auth-form">
+            <h1>Register</h1>
 
-        <x-form action="{{ route('register') }}" method="POST">
             <x-input id="name" name="name" type="text" label="Name:" />
             <x-error field="name" />
 
