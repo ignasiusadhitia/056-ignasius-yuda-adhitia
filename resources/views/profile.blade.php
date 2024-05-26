@@ -6,9 +6,9 @@
 
     <section class="section-wrapper">
 
-        <x-user-avatar :user="auth()->user()" id="avatar" />
-
         <x-form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
+            <x-user-avatar :user="auth()->user()" id="avatar" />
+
             <x-input id="name" name="name" type="text" label="Name:" :value="auth()->user()->name" />
             <x-error field="name" />
 
