@@ -525,12 +525,54 @@ svg {
     min-height: 10em;
     max-width: 500px;
     text-align: center;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
-.modal-content {
+.modal-content > div {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+.modal-content .icon-wrapper {
+    margin-top: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border: var(--border);
+    border-radius: 50%;
+    background-color: var(--danger-01);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content .icon-wrapper i {
+    font-size: 2.5rem;
+}
+
+#deleteModal h3 {
+    font: var(--text-md-semibold);
+}
+
+#deleteModal p {
+    margin-top: -1rem;
+    font: var(--text-sm-normal);
+}
+
+#deleteForm {
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+    font: var(--text-sm-medium);
+}
+#confirmDeleteButton {
+    background-color: var(--danger-01);
+}
+
+#cancelDeleteButton {
+    background-color: var(--white);
 }
 
 .modal-content i {

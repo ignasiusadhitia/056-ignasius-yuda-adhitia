@@ -43,13 +43,17 @@
     </section>
 
     <x-modal id="deleteModal" messageId='deleteMessage'>
+        <div class="icon-wrapper">
+            <i class="fas fa-trash"></i>
+        </div>
+        <h3>Delete Question</h3>
         <p>Are you sure you want to delete this question?</p>
         <form id="deleteForm" method="POST">
             @csrf
             @method('DELETE')
 
-            <button type="submit">Confirm</button>
-            <button type="button" id="cancelDeleteBtn">Cancel</button>
+            <button type="button" id="cancelDeleteButton">Cancel</button>
+            <button type="submit" id="confirmDeleteButton">Confirm</button>
         </form>
     </x-modal>
 
@@ -63,7 +67,7 @@
             })
         })
 
-        document.getElementById('cancelDeleteBtn').addEventListener('click', function() {
+        document.getElementById('cancelDeleteButton').addEventListener('click', function() {
             document.getElementById('deleteModal').style.display = 'none';
         });
     </script>
