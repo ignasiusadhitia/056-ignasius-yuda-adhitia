@@ -433,6 +433,7 @@ input[type="file"]::file-selector-button {
     background-color: var(--black);
     color: var(--white);
     cursor: pointer;
+    font: var(--text-sm-medium);
 }
 
 input:disabled,
