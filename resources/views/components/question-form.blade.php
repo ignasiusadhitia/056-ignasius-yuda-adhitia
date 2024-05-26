@@ -62,9 +62,9 @@
 
     <x-button>
         @if ($method == 'POST')
-            <i class="fa fa-plus"></i> Create Question
+            Create Question
         @else
-            <i class="fa fa-save"></i> Update Question
+            Update Question
         @endif
     </x-button>
 </x-form>
