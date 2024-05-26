@@ -615,7 +615,7 @@ svg {
     background-color: var(--white);
     border: var(--border);
     border-radius: var(--border-radius);
-    font: var(--text-sm-medium);
+    font: var(--text-sm-normal);
     cursor: pointer;
 }
 
