@@ -36,33 +36,6 @@
             </div>
         </div>
 
-        <div class="menu-wrapper">
-            <h2>Whatcha gonna do now?</h2>
-
-            <div class="menu">
-                <a href="{{ route('trivia.index') }}" class="menu-item">
-                    <span>
-                        Play
-                    </span>
-                </a>
-                <a href="{{ route('questions.index') }}" class="menu-item">
-                    <span>
-                        My Question
-                    </span>
-                </a>
-                <a href="{{ route('profile') }}" class="menu-item">
-                    <span>
-                        My Profile
-                    </span>
-                </a>
-                <a href="{{ route('leaderboard') }}" class="menu-item">
-                    <span>
-                        Leaderboard
-                    </span>
-                </a>
-            </div>
-        </div>
-
     </section>
 
 @endsection

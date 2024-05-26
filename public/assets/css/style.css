@@ -138,7 +138,7 @@ header,
 main,
 footer {
     width: 100%;
-    padding: 1em;
+    padding: 1rem;
 }
 
 main {
@@ -152,7 +152,7 @@ footer {
 .container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 42em;
+    max-width: 42rem;
 }
 
 .section-wrapper {
@@ -314,16 +314,16 @@ nav .login-button:hover {
 }
 
 .bottom-navigation {
-    position: fixed;
-    max-width: 42em;
-    bottom: 1rem;
+    width: 100%;
+    position: relative;
+    bottom: 0.5rem;
     z-index: 1000;
     border-radius: var(--border-radius);
     border: var(--border);
-    box-shadow: var(--box-shadow);
 }
 
 .bottom-navigation ul {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0;
@@ -352,25 +352,7 @@ nav .login-button:hover {
 }
 
 .bottom-navigation a i {
-    font-size: 20px;
-}
-
-.menu {
-    margin: 1em 0;
-    display: grid;
-    column-gap: 1em;
-    grid-template-columns: repeat(4, 1fr);
-    align-items: center;
-    text-align: center;
-}
-
-.menu .menu-item {
-    min-height: 8em;
-    border: var(--border);
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 1.25rem;
 }
 
 /* BUTTON, INPUT, SELECT, LABEL */

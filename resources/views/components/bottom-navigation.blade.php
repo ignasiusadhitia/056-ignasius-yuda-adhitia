@@ -1,4 +1,4 @@
-<nav class="bottom-navigation section-wrapper">
+<nav class="bottom-navigation">
     <ul>
         <li>
             <a href="{{ route('questions.index') }}">
