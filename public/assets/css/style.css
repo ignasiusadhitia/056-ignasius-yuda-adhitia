@@ -273,16 +273,42 @@ nav {
 nav div {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
 }
 
 nav a {
-    padding: 0.5em 1em;
     display: block;
 }
 
-nav a:hover {
-    box-shadow: none;
+nav .back-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    border: var(--border);
+    border-radius: 50%;
+    background-color: var(--primary-01);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .back-button:hover {
+    box-shadow: var(--box-shadow);
+}
+
+nav .logo {
+    padding: 0.5rem 0;
+}
+
+nav .login-button {
+    padding: 0.5rem 2.5rem;
+    background-color: var(--white);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    font: var(--text-sm-medium);
+}
+
+nav .login-button:hover {
+    box-shadow: var(--box-shadow);
 }
 
 .bottom-navigation {
@@ -348,7 +374,6 @@ nav a:hover {
 /* BUTTON, INPUT, SELECT, LABEL */
 button {
     padding: 0 4rem;
-    font-weight: 600;
     cursor: pointer;
     font: var(--text-sm-medium);
 }
@@ -396,6 +421,12 @@ form select:disabled {
 label {
     font: var(--text-sm-medium);
     justify-self: start;
+}
+
+.error-message {
+    margin-top: -0.75rem;
+    color: var(--danger-01);
+    font: var(--text-sm-normal);
 }
 
 /* FORM */
