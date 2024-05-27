@@ -13,28 +13,40 @@
                 $currentUserScore = $currentUser->score ? $currentUser->score->score : null;
             @endphp
 
-            @foreach ($scores as $index => $score)
-                @if ($score->user_id == $currentUserId)
-                    @php
-                        $isCurrentUserInTop10 = true;
-                    @endphp
-                @endif
+            <div class="top-three-wrapper">
+                @foreach ($scores as $index => $score)
+                    @break($index >= 3)
 
-                <div class="rank-item {{ $score->user_id == $currentUserId ? 'highlight' : '' }}">
-                    <div>{{ $index + 1 }}.</div>
-                    <x-user-avatar :user="$score->user" />
-                    <div>{{ $score->user_id == $currentUserId ? 'You' : $score->user->name }}</div>
-                    <div>{{ $score->score }}pts</div>
-                </div>
-            @endforeach
+                    @php
+                        if ($score->user_id == $currentUserId) {
+                            $isCurrentUserInTop10 = true;
+                        }
+                    @endphp
+
+                    <x-rank-item :index="$index" :user="$score->user" :score="$score->score" :highlight="$score->user_id == $currentUserId"
+                        :isCurrentUser="$score->user_id == $currentUserId" />
+                @endforeach
+            </div>
+
+            <div class="remaining-wrapper">
+                @foreach ($scores as $index => $score)
+                    @continue($index < 3)
+                    @break($index > 10)
+
+                    @php
+                        if ($score->user_id == $currentUserId) {
+                            $isCurrentUserInTop10 = true;
+                        }
+                    @endphp
+
+                    <x-rank-item :index="$index" :user="$score->user" :score="$score->score" :highlight="$score->user_id == $currentUserId"
+                        :isCurrentUser="$score->user_id == $currentUserId" />
+                @endforeach
+            </div>
 
             @if (!$isCurrentUserInTop10 && $userRank && $currentUserScore !== null)
-                <div class="rank-item highlight">
-                    <div>{{ $userRank }}.</div>
-                    <x-user-avatar :user="$currentUser" />
-                    <div>You</div>
-                    <div>{{ $currentUserScore }}pts</div>
-                </div>
+                <x-rank-item :index="$userRank - 1" :user="$currentUser" :score="$currentUserScore" :highlight="true"
+                    :isCurrentUser="true" />
             @endif
         </div>
 
