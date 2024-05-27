@@ -31,7 +31,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password
             ])) {
-                return to_route('dashboard');
+                return to_route('dashboard')->with('success', 'Registered successfully');
             } else {
                 return to_route('register');
             }
@@ -53,7 +53,7 @@ class AuthController extends Controller
                 'password' => $request->password
             ])) {
 
-                return to_route('dashboard');
+                return to_route('dashboard')->with('success', 'Logged in successfully');
             } else {
                 return to_route('login')->with('error', 'Invalid login details');
             }
