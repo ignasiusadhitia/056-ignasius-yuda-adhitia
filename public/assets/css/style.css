@@ -818,7 +818,7 @@ svg {
 
 /* LEADERBOARD */
 .rank-item {
-    grid-template-columns: 0.25fr 0.5fr 3fr auto;
+    grid-template-columns: 0.25fr auto 3fr auto;
     align-items: center;
     border: var(--border);
     border-radius: var(--border-radius);
@@ -834,6 +834,41 @@ svg {
 .highlight {
     background-color: var(--primary-01);
     font: var(--text-sm-semibold);
+}
+
+.top-three-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    align-items: flex-end;
+}
+
+.top-three-wrapper .rank-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 33%;
+}
+
+.top-three-wrapper .rank-item:first-child {
+    order: 2;
+    min-height: 12rem;
+}
+
+.top-three-wrapper .rank-item:nth-child(2) {
+    order: 1;
+    min-height: 10rem;
+}
+
+.top-three-wrapper .rank-item:nth-child(3) {
+    order: 3;
+    min-height: 8rem;
+}
+
+.remaining-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 /* REGISTER */
