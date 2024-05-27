@@ -19,14 +19,14 @@
             successAlert.classList.add('show');
             setTimeout(() => {
                 successAlert.classList.remove('show');
-            }, 2000);
+            }, 3000);
         }
 
         if (errorAlert) {
             errorAlert.classList.add('show');
             setTimeout(() => {
                 errorAlert.classList.remove('show');
-            }, 2000)
+            }, 3000)
         }
     })
 </script>

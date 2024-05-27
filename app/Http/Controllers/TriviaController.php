@@ -16,7 +16,21 @@ class TriviaController extends Controller
 {
     public function showQuestion()
     {
-        $question = Question::inRandomOrder()->with('answers')->first();
+        $user = Auth::user();
+
+        $answeredCorrectlyQuestionsIds = UserAnswer::where('user_id', $user->id)
+            ->where('answered_correctly', true)
+            ->pluck('question_id')
+            ->toArray();
+
+        $question = Question::whereNotIn('id', $answeredCorrectlyQuestionsIds)
+            ->inRandomOrder()
+            ->with('answers')
+            ->first();
+
+        if (!$question) {
+            return redirect()->route('questions.index')->with('error', 'No more question! Add new questions!');
+        }
 
         return view('trivia.index', compact('question'));
     }

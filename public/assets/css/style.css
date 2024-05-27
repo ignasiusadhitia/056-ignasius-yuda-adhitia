@@ -478,7 +478,7 @@ svg {
 
 /* ALERT */
 .alert {
-    padding: 1rem 2rem;
+    padding: 0.5rem 4rem;
     margin-bottom: 20px;
     border: 1px solid transparent;
     border-radius: var(--border-radius);
@@ -495,11 +495,13 @@ svg {
 .alert-success {
     color: var(--success-01);
     background-color: var(--success-02);
+    border: 1px solid var(--success-01);
 }
 
 .alert-danger {
     color: var(--danger-01);
     background-color: var(--danger-02);
+    border: 1px solid var(--danger-01);
 }
 
 .alert.show {
