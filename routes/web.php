@@ -1,43 +1,36 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TriviaController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+
     return view('welcome');
+})->name('welcome');
+
+Route::group(['middleware' => ['guest']], function () {
+    Route::match(['get', 'post'], 'register', [AuthController::class, 'register'])->name('register');
+    Route::match(['get', 'post'], 'login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::match(['get', 'post'], 'profile', [AuthController::class, 'profile'])->name('profile');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+    Route::resource('questions', QuestionController::class)->except('show');
 
-Route::get('/profile', function () {
-    return view('profile');
-});
+    Route::prefix('trivia')->group(function () {
+        Route::get('/', [TriviaController::class, 'showQuestion'])->name('trivia.index');
+        Route::post('/answer', [TriviaController::class, 'submitAnswer'])->name('trivia.answer');
+    });
 
-Route::get('/questions', function () {
-    return view('questions.index');
-})->name('questions');
-
-Route::get('/questions/create', function () {
-    return view('questions.create');
-})->name('questions.create');
-
-Route::get('/questions/edit/{question}', function () {
-    return view('questions.edit');
-})->name('questions.edit');
-
-Route::get('/trivia', function () {
-    return view('trivia');
-});
-
-Route::get('leaderboard', function () {
-    return view('leaderboard');
+    Route::get('leaderboard', [TriviaController::class, 'showLeaderboard'])->name('leaderboard');
 });

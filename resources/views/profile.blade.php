@@ -5,39 +5,21 @@
 @section('content')
 
     <section class="section-wrapper">
-        <h1>Profile</h1>
 
-        <img id="avatar" src="{{ asset('assets/images/avatar-1.jpg') }}" alt="user-1">
+        <x-form action="{{ route('profile') }}" method="POST" enctype="multipart/form-data">
 
-        <form action="" method="" enctype="multipart/form-data">
+            <x-user-avatar :user="auth()->user()" id="avatar" />
 
-            @csrf
-            <div>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ auth()->user() ? auth()->user()->name : '' }}">
-                @error('name')
-                    <div>{{ $message }}</div>
-                @enderror
-            </div>
+            <x-input id="name" name="name" type="text" label="Name:" :value="auth()->user()->name" />
+            <x-error field="name" />
 
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"
-                    value="{{ auth()->user() ? auth()->user()->email : '' }}" disabled>
-            </div>
+            <x-input id="email" name="email" type="email" label="Email:" :value="auth()->user()->email" disabled="true" />
 
-            <div>
-                <label for="image">Image:</label>
-                <input type="file" id="image" name="image">
-                @error('image')
-                    <div>{{ $message }}</div>
-                @enderror
-            </div>
+            <x-input id="image" name="image" type="file" label="Image:" />
+            <x-error field="image" />
 
-            <div>
-                <button type="submit">Save Changes</button>
-            </div>
-        </form>
+            <x-button>Save Changes</x-button>
+        </x-form>
     </section>
 
 @endsection

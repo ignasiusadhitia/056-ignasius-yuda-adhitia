@@ -12,48 +12,22 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
 <body>
-    <header class="container">
-        <nav>
-            @if (Route::has('login'))
-                <a href="/">Jabar Trivia</a>
-                @auth
-                    <a href="{{ url('/dashboard') }}">
-                        Dashboard
-                    </a>
-                @else
-                    <a href="{{ route('login') }}">
-                        Log in
-                    </a>
-                @endauth
-            @endif
-        </nav>
-    </header>
+    <x-header :title="View::getSection('title') ?? config('app.name')" />
 
     <main class="container">
-        @session('success')
-            <div id="success-alert">
-                {{ session('success') }}
-            </div>
-        @endsession
-
-        @session('error')
-            <div id="error-alert">
-                {{ session('error') }}
-            </div>
-        @endsession
+        <x-alert />
 
         @yield('content')
     </main>
 
-    <footer class="container">
-        <span>Jabar Trivia &copy; {{ date('Y') }}</span>
-    </footer>
+    <x-footer />
 </body>
 
 </html>

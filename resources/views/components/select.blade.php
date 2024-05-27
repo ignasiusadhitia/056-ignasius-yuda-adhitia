@@ -1,8 +1,11 @@
+@props(['id', 'name', 'label', 'options' => []])
+
 <div class="field-wrapper">
     <label for="{{ $id }}">{{ $label }}</label>
-    <select name="{{ $name }}" id="{{ $id }}" required>
+    <select id="{{ $id }}" name="{{ $name }}">
         @foreach ($options as $option)
-            <option value="{{ $option->id }}" @if ($selectedValue === $option->id) selected @endif>{{ $option->name }}
+            <option value="{{ $option['value'] }}" {{ $option['selected'] ? 'selected' : '' }}>
+                {{ $option['label'] }}
             </option>
         @endforeach
     </select>

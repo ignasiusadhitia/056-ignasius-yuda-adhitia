@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image'
     ];
 
     /**
@@ -43,5 +45,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function userAnswers()
+    {
+        return $this->hasMany(UserAnswer::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class); // Replace 'Answer' with your actual answer model name
+    }
+
+    public function score(): HasOne
+    {
+        return $this->hasOne(Score::class);
     }
 }

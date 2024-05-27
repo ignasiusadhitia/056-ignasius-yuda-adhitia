@@ -6,30 +6,28 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Input extends Component
+class Modal extends Component
 {
+    public $id;
+    public $messageId;
     /**
      * Create a new component instance.
+     *
+     * @return void
      */
-    public $label;
-    public $id;
-    public $name;
-    public $value;
-    public $required;
-
-    public function __construct($label, $id, $name, $value = null)
+    public function __construct($id, $messageId)
     {
-        $this->label = $label;
         $this->id = $id;
-        $this->name = $name;
-        $this->value = $value;
+        $this->messageId = $messageId;
     }
 
     /**
      * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View
      */
     public function render(): View|Closure|string
     {
-        return view('components.input');
+        return view('components.modal');
     }
 }
