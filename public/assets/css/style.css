@@ -878,7 +878,7 @@ svg {
 
 .highlight {
     background-color: var(--primary-01) !important;
-    font: var(--text-sm-semibold);
+    font: var(--text-md-semibold);
 }
 
 .top-three-wrapper {
@@ -893,6 +893,8 @@ svg {
     flex-direction: column;
     justify-content: center;
     width: 33%;
+    text-align: center;
+    font: var(--text-md-normal);
 }
 
 .top-three-wrapper .rank-item:first-child {
