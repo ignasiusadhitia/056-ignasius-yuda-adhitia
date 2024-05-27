@@ -7,12 +7,27 @@
         <div class="trivia-wrapper">
 
             <x-modal id="statusModal" messageId="statusMessage">
-                <a href="{{ route('leaderboard') }}">
-                    <span>Quit</span>
-                </a>
-                <button id="nextQuestionButton">Next Question</button>
+                <div class="action-wrapper">
+                    <a href="{{ route('leaderboard') }}">
+                        <span>Quit</span>
+                    </a>
+                    <button id="nextQuestionButton">Play</button>
+                </div>
             </x-modal>
 
+            <x-modal id="timeoutModal" messageId="timeoutMessage">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-hourglass-end"></i>
+                </div>
+                <h3>Time Is Up!</h3>
+                <p>What would you like to do?</p>
+                <div class="action-wrapper">
+                    <a href="{{ route('leaderboard') }}">
+                        <span>Quit</span>
+                    </a>
+                    <button id="continueButton">Play</button>
+                </div>
+            </x-modal>
 
 
             <div class="question-wrapper">
@@ -22,6 +37,10 @@
                 <div>
                     <p>{{ $question->question_text }}</p>
                 </div>
+            </div>
+
+            <div class="timer">
+                <p>Time remaining: <span id="countdown">5</span> seconds</p>
             </div>
 
             <form id="triviaForm" action="{{ route('trivia.answer') }}" method="POST" class="answers-wrapper">
@@ -43,8 +62,34 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            let timer;
+            let countdownElement = document.getElementById('countdown');
+            let timeLeft = 5;
+            let userAnswered = false;
+
+            function startTimer() {
+                countdownElement.textContent = timeLeft;
+
+                timer = setInterval(function() {
+                    timeLeft--;
+                    countdownElement.textContent = timeLeft;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        showTimeoutModal();
+                    }
+                }, 1000);
+            }
+
+            function showTimeoutModal() {
+                const timeoutModal = document.getElementById('timeoutModal');
+                timeoutModal.style.display = 'block';
+            }
+
             document.querySelectorAll('.btn-answer').forEach(button => {
                 button.addEventListener('click', function() {
+                    clearInterval(timer);
+                    userAnswered = true;
                     document.getElementById('answer_id').value = this.getAttribute(
                         'data-answer-id');
 
@@ -84,6 +129,12 @@
             document.getElementById('nextQuestionButton').addEventListener('click', function() {
                 window.location.href = '{{ route('trivia.index') }}';
             })
+
+            document.getElementById('continueButton').addEventListener('click', function() {
+                window.location.href = '{{ route('trivia.index') }}';
+            })
+
+            startTimer();
         });
     </script>
 @endsection

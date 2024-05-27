@@ -780,6 +780,15 @@ svg {
     font: var(--text-xl-normal);
 }
 
+.timer p {
+    font: var(--text-sm-normal);
+}
+
+.timer span {
+    font: var(--text-sm-semibold);
+    color: var(--danger-01);
+}
+
 .answers-wrapper {
     margin-top: 1rem;
 }
@@ -798,13 +807,30 @@ svg {
     background-color: var(--primary-01);
 }
 
-#statusModal a {
+#statusModal .action-wrapper,
+#timeoutModal .action-wrapper {
+    display: flex;
+    flex-direction: row;
+    font: var(--text-sm-medium);
+    padding: 2rem;
+}
+
+#statusModal a,
+#timeoutModal a {
     height: 3rem;
     border: var(--border);
     border-radius: var(--border-radius);
 }
 
-#statusModal a:hover {
+#statusModal a,
+#statusModal button,
+#timeoutModal a,
+#timeoutModal button {
+    width: 50%;
+}
+
+#statusModal a:hover,
+#timeoutModal a:hover {
     box-shadow: var(--box-shadow);
 }
 
@@ -812,8 +838,25 @@ svg {
     background-color: var(--primary-01);
 }
 
+#timeoutModal button {
+    background-color: var(--warning-01);
+}
+
 #statusMessage {
     margin-bottom: 1.5rem;
+}
+
+#timeoutModal h3 {
+    font: var(--text-md-semibold);
+}
+
+#timeoutModal p {
+    margin-top: -1rem;
+    font: var(--text-sm-normal);
+}
+
+#timeoutModal .icon-wrapper {
+    background-color: var(--warning-01);
 }
 
 /* LEADERBOARD */
@@ -882,4 +925,19 @@ svg {
 .register-button-wrapper button {
     font: var(--text-sm-medium);
     background-color: var(--primary-01);
+}
+
+@media screen and (max-width: 600px) {
+    #statusModal .action-wrapper,
+    #timeoutModal .action-wrapper {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #statusModal a,
+    #statusModal button,
+    #timeoutModal a,
+    #timeoutModal button {
+        width: 100%;
+    }
 }
