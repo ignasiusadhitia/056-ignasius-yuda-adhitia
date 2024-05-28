@@ -40,7 +40,12 @@
                 @endforeach
             </div>
         @endif
+
+        <x-pagination :paginator="$questions" />
+
+
     </section>
+
 
     <x-modal id="deleteModal" messageId='deleteMessage'>
         <div class="icon-wrapper">
