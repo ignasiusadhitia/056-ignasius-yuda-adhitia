@@ -931,6 +931,7 @@ svg {
     background-color: var(--primary-01);
 }
 
+/* PAGINATION COMPONENT */
 .pagination-wrapper {
     display: flex;
     justify-content: end;
