@@ -17,11 +17,6 @@
                 </span>
             </a>
             <button id="openSearchModal" class="search-button">Search</button>
-            <a href="{{ route('questions.export') }}" class="export-button">
-                <span>
-                    Export
-                </span>
-            </a>
         </div>
 
         @if ($questions->isEmpty())
@@ -39,7 +34,11 @@
                 @foreach ($questions as $key => $question)
                     <div class="question-item">
                         <div>{{ $key + 1 }}</div>
-                        <div>{{ Str::limit($question->question_text, 15) }}</div>
+                        <div class="question-text-wrapper">
+                            <p>
+                                {{ Str::limit($question->question_text, 15) }}
+                            </p>
+                        </div>
                         <div>
                             <span class="pill {{ Str::lower($question->category->name) }}">
                                 {{ $question->category->name }}

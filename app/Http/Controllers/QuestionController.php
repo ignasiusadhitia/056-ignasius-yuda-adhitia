@@ -151,31 +151,6 @@ class QuestionController extends Controller
         return redirect()->route('questions.index')->with('success', 'Question deleted successfully');
     }
 
-    public function export()
-    {
-        $questions = Question::where('user_id', Auth::id())->get();
-
-        $csvFileName = 'questions.csv';
-        $csvFile = fopen('php://output', 'w');
-
-        header('Content-Type: text/csv');
-        header('Content-Disposition: attachment; filename="' . $csvFileName . '"');
-
-
-        fputcsv($csvFile, ['Question Text', 'Category', 'Difficulty Level']);
-
-        foreach ($questions as $question) {
-            fputcsv($csvFile, [
-                $question->question_text,
-                $question->category->name,
-                $question->difficulty_level,
-            ]);
-        }
-
-        fclose($csvFile);
-        exit();
-    }
-
     public function answeredQuestions(Request $request)
     {
         $query = UserAnswer::where('user_id', Auth::id())->with('question.category');

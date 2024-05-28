@@ -11,11 +11,6 @@
                     All
                 </span>
             </a>
-            <a href="{{ route('questions.create') }}" class="add-question-button">
-                <span>
-                    Add
-                </span>
-            </a>
             <button id="openSearchModal" class="search-button">Search</button>
             <a href="{{ route('questions.export') }}" class="export-button">
                 <span>
