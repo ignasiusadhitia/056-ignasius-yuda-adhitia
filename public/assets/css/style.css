@@ -195,14 +195,7 @@ footer {
 .questions-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     gap: 0.5em;
-    background-color: var(--white);
-    border: var(--border);
-    border-radius: var(--border-radius);
-}
-
-.questions-wrapper {
     padding-bottom: 2rem;
     overflow-x: auto;
 }
