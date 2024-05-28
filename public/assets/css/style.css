@@ -637,7 +637,8 @@ svg {
 }
 
 .action-wrapper .add-question-button,
-.action-wrapper .all-question-button {
+.action-wrapper .all-question-button,
+.action-wrapper .play-trivia-button {
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: var(--primary-01);
@@ -658,8 +659,14 @@ svg {
 }
 
 .action-wrapper .add-question-button:hover,
-.action-wrapper .all-question-button:hover {
+.action-wrapper .all-question-button:hover,
+.action-wrapper .play-trivia-button:hover {
     box-shadow: var(--box-shadow);
+}
+
+.action-wrapper .add-question-button,
+.action-wrapper .play-trivia-button {
+    background-color: var(--primary-01);
 }
 
 .question-item {

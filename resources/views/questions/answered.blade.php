@@ -11,6 +11,11 @@
                     All
                 </span>
             </a>
+            <a href="{{ route('trivia.index') }}" class="play-trivia-button">
+                <span>
+                    Play
+                </span>
+            </a>
             <button id="openSearchModal" class="search-button">Search</button>
         </div>
 
