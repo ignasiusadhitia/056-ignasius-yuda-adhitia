@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Score;
 use App\Models\User;
+use App\Models\UserAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -77,11 +79,23 @@ class AuthController extends Controller
         return $userRank;
     }
 
+    public function getCreatedQuestionsCount()
+    {
+        return Question::where('user_id', Auth::id())->count();
+    }
+
+    public function getAnsweredQuestionsCount()
+    {
+        return UserAnswer::where('user_id', Auth::id())->count();
+    }
+
     public function dashboard()
     {
         $userRank = $this->getCurrentUserRank();
+        $createdQuestionsCount = $this->getCreatedQuestionsCount();
+        $answeredQuestionsCount = $this->getAnsweredQuestionsCount();
 
-        return view('dashboard', compact('userRank'));
+        return view('dashboard', compact('userRank', 'createdQuestionsCount', 'answeredQuestionsCount'));
     }
 
     public function profile(Request $request)

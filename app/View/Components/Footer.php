@@ -16,8 +16,7 @@ class Footer extends Component
      */
     public function __construct()
     {
-        $this->showBottomNavigation = Route::is('dashboard');
-        $this->showCopyright = Route::is('welcome') || Route::is('login') || Route::is('register');
+        //
     }
 
     /**
