@@ -41,7 +41,9 @@
             </div>
         @endif
 
-        <x-pagination :paginator="$questions" />
+        <div class="pagination-wrapper">
+            {{ $questions->links('vendor.pagination.index') }}
+        </div>
 
 
     </section>

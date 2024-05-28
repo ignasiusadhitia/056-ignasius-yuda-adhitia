@@ -931,6 +931,46 @@ svg {
     background-color: var(--primary-01);
 }
 
+.pagination-wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.pagination-wrapper > nav {
+    border: var(--border);
+    border-radius: var(--border-radius);
+}
+
+.pagination-wrapper > nav > div > span {
+    display: flex;
+}
+
+.pagination-wrapper .pagination-item {
+    background-color: var(--white);
+    width: 2.25rem;
+    height: 2.25rem;
+    font: var(--text-sm-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-wrapper .pagination-item:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.pagination-wrapper .pagination-item:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+.pagination-wrapper .pagination-item:hover {
+    background-color: var(--primary-02);
+}
+
+.pagination-wrapper .current-page {
+    background-color: var(--primary-01);
+}
+
 @media screen and (max-width: 600px) {
     #statusModal .action-wrapper,
     #timeoutModal .action-wrapper {
