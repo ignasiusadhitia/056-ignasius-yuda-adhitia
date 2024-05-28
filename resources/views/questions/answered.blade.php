@@ -12,11 +12,6 @@
                 </span>
             </a>
             <button id="openSearchModal" class="search-button">Search</button>
-            <a href="{{ route('questions.export') }}" class="export-button">
-                <span>
-                    Export
-                </span>
-            </a>
         </div>
 
         @if ($answeredQuestions->isEmpty())
