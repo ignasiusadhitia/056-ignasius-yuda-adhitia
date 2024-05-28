@@ -24,9 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'post'], 'profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-
     Route::resource('questions', QuestionController::class)->except('show');
     Route::get('/questions/export', [QuestionController::class, 'export'])->name('questions.export');
+    Route::get('/questions/answered', [QuestionController::class, 'answeredQuestions'])->name('questions.answered');
 
 
     Route::prefix('trivia')->group(function () {

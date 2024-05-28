@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Question;
+use App\Models\UserAnswer;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -160,10 +161,9 @@ class QuestionController extends Controller
         header('Content-Type: text/csv');
         header('Content-Disposition: attachment; filename="' . $csvFileName . '"');
 
-        // Add CSV header
+
         fputcsv($csvFile, ['Question Text', 'Category', 'Difficulty Level']);
 
-        // Add CSV rows
         foreach ($questions as $question) {
             fputcsv($csvFile, [
                 $question->question_text,
@@ -174,5 +174,39 @@ class QuestionController extends Controller
 
         fclose($csvFile);
         exit();
+    }
+
+    public function answeredQuestions(Request $request)
+    {
+        $query = UserAnswer::where('user_id', Auth::id())->with('question.category');
+
+        if ($search = $request->input('search')) {
+            $query->whereHas('question', function ($q) use ($search) {
+                $q->where('question_text', 'like', "%{$search}%");
+            });
+        }
+
+        if ($category = $request->input('category')) {
+            $query->whereHas('question', function ($q) use ($category) {
+                $q->where('category_id', $category);
+            });
+        }
+
+        if ($difficulty = $request->input('difficulty')) {
+            $query->whereHas('question', function ($q) use ($difficulty) {
+                $q->where('difficulty_level', $difficulty);
+            });
+        }
+
+        if ($request->has('answered_correctly')) {
+            $answeredCorrectly = (bool) $request->input('answered_correctly');
+            $query->where('answered_correctly', $answeredCorrectly);
+        }
+
+        $answeredQuestions = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        $categories = Category::all();
+
+        return view('questions.answered', compact('answeredQuestions', 'categories'));
     }
 }

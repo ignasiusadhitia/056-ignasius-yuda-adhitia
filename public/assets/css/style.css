@@ -775,6 +775,11 @@ svg {
     padding: 1rem;
 }
 
+.question-text-wrapper {
+    display: flex;
+    max-width: 12rem;
+}
+
 /* TRIVIA  */
 
 .trivia-wrapper {
