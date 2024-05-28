@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::resource('questions', QuestionController::class)->except('show');
+    Route::get('/questions/export', [QuestionController::class, 'export'])->name('questions.export');
+
 
     Route::prefix('trivia')->group(function () {
         Route::get('/', [TriviaController::class, 'showQuestion'])->name('trivia.index');

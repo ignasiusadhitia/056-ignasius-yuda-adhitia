@@ -6,12 +6,34 @@
 
     <section class="section-wrapper">
         <div class="action-wrapper">
-            <a href="{{ route('questions.create') }}" class="add-question-button">Add Question</a>
+            <a href="{{ route('questions.index') }}" class="all-question-button">
+                <span>
+                    All
+                </span>
+            </a>
+            <a href="{{ route('questions.create') }}" class="add-question-button">
+                <span>
+                    Add
+                </span>
+            </a>
+            <button id="openSearchModal" class="search-button">Search</button>
+            <a href="{{ route('questions.export') }}" class="export-button">
+                <span>
+                    Export
+                </span>
+            </a>
         </div>
+
         @if ($questions->isEmpty())
-            <p>
-                You haven't created any questions yet.
-            </p>
+            <div class="empty-message-wrapper">
+                <p>
+                    @if (request()->has('search') || request()->has('category') || request()->has('difficulty'))
+                        No questions found for your search criteria.
+                    @else
+                        You haven't created any questions yet.
+                    @endif
+                </p>
+            </div>
         @else
             <div class="questions-wrapper">
                 @foreach ($questions as $key => $question)
@@ -48,6 +70,36 @@
 
     </section>
 
+    <x-modal id="searchModal" messageId='searchQuestion'>
+        <div class="icon-wrapper">
+            <i class="fas fa-search"></i>
+        </div>
+        <h3>Search Question</h3>
+        <p>Add specific criteria to narrow down your results</p>
+        <form method="GET" action="{{ route('questions.index') }}" class="filter-wrapper">
+            <input type="text" name="search" id="searchField" placeholder="Search questions..."
+                value="{{ request('search') }}">
+
+            <select name="category" id="categoryFilter">
+                <option value="">All Categories</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            <select name="difficulty" id="difficultyFilter">
+                <option value="">All Difficulty Levels</option>
+                <option value="easy" {{ request('difficulty') == 'easy' ? 'selected' : '' }}>Easy</option>
+                <option value="medium" {{ request('difficulty') == 'medium' ? 'selected' : '' }}>Medium</option>
+                <option value="hard" {{ request('difficulty') == 'hard' ? 'selected' : '' }}>Hard</option>
+            </select>
+
+            <button type="submit">Filter</button>
+        </form>
+    </x-modal>
+
 
     <x-modal id="deleteModal" messageId='deleteMessage'>
         <div class="icon-wrapper">
@@ -65,6 +117,19 @@
     </x-modal>
 
     <script>
+        const searchModal = document.getElementById('searchModal');
+        const openSearchModal = document.getElementById('openSearchModal');
+
+        openSearchModal.onclick = function() {
+            searchModal.style.display = 'block';
+        }
+
+        window.onclick = function() {
+            if (event.target == searchModal) {
+                searchModal.style.display = 'none';
+            }
+        }
+
         document.querySelectorAll('.delete-button').forEach(button => {
             button.addEventListener('click', function() {
                 const questionId = this.getAttribute('data-question-id');

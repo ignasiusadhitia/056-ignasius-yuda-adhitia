@@ -13,11 +13,26 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::where('user_id', Auth::id())->latest()->paginate(10);
+        $query = Question::where('user_id', Auth::id());
 
-        return view('questions.index', compact('questions'));
+        if ($search = $request->input('search')) {
+            $query->where('question_text', 'like', "%{$search}%");
+        }
+
+        if ($category = $request->input('category')) {
+            $query->where('category_id', $category);
+        }
+
+        if ($difficulty = $request->input('difficulty')) {
+            $query->where('difficulty_level', $difficulty);
+        }
+
+        $questions = $query->latest()->paginate(10);
+        $categories = Category::all();
+
+        return view('questions.index', compact('questions', 'categories'));
     }
 
     public function create()
@@ -133,5 +148,31 @@ class QuestionController extends Controller
     {
         $question->delete();
         return redirect()->route('questions.index')->with('success', 'Question deleted successfully');
+    }
+
+    public function export()
+    {
+        $questions = Question::where('user_id', Auth::id())->get();
+
+        $csvFileName = 'questions.csv';
+        $csvFile = fopen('php://output', 'w');
+
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $csvFileName . '"');
+
+        // Add CSV header
+        fputcsv($csvFile, ['Question Text', 'Category', 'Difficulty Level']);
+
+        // Add CSV rows
+        foreach ($questions as $question) {
+            fputcsv($csvFile, [
+                $question->question_text,
+                $question->category->name,
+                $question->difficulty_level,
+            ]);
+        }
+
+        fclose($csvFile);
+        exit();
     }
 }
