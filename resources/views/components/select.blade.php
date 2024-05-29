@@ -4,7 +4,9 @@
     <label for="{{ $id }}">{{ $label }}</label>
     <div class="select-wrapper">
         <div class="select" id="{{ $id }}" tabindex="0">
-            <div class="select-trigger">{{ $options[0]['label'] ?? 'Select an option' }}</div>
+            <div class="select-trigger">
+                <span>{{ $options[0]['label'] ?? 'Select an option' }}</span>
+            </div>
             <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -18,7 +20,7 @@
                 @endforeach
             </div>
         </div>
-        <input type="hidden" name="{{ $name }}" value="{{ $options[0]['value'] ?? '' }}">
+        <input type="hidden" name="{{ $name }}" value="{{ $selected ?? ($options[0]['value'] ?? '') }}">
     </div>
 </div>
 
@@ -33,7 +35,15 @@
             const options = select.querySelector('.options');
             const hiddenInput = select.nextElementSibling;
 
-            trigger.addEventListener('click', () => {
+            trigger.addEventListener('click', (e) => {
+                selects.forEach(otherSelect => {
+                    if (otherSelect !== select) {
+                        otherSelect.querySelector('.options').classList
+                            .remove('show');
+                        otherSelect.classList.remove('open');
+                    }
+                });
+
                 options.classList.toggle('show');
                 select.classList.toggle('open');
             });
@@ -42,7 +52,6 @@
                 if (e.target.classList.contains('option')) {
                     const selectedOption = e.target;
                     const value = selectedOption.getAttribute('data-value');
-                    // trigger.textContent = selectedOption.textContent;
                     trigger.textContent = selectedOption.textContent;
 
                     hiddenInput.value = value;
@@ -56,6 +65,7 @@
                 }
             });
         });
+
 
         select.addEventListener('focus', () => {
             select.classList.add('focused');
