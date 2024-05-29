@@ -118,6 +118,11 @@
     border-bottom: 4px solid var(--gray-200);
 }
 
+/* TRANSITION */
+* {
+    transition: all 0.3s ease-in-out;
+}
+
 /* BODY */
 body {
     line-height: 1.5;
@@ -1189,7 +1194,6 @@ svg {
 
 .arrow {
     margin-left: 1rem;
-    transition: transform 0.3s;
     border: none;
 }
 
