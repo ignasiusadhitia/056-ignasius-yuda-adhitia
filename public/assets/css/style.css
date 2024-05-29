@@ -1184,4 +1184,14 @@ svg {
     .menu-item-wrapper ul {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .pagination-wrapper .pagination-item {
+        display: none;
+    }
+
+    .pagination-wrapper .pagination-item:first-child,
+    .pagination-wrapper .pagination-item:last-child,
+    .pagination-wrapper .current-page {
+        display: flex;
+    }
 }
