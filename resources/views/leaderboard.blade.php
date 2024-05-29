@@ -42,12 +42,13 @@
                     <x-rank-item :index="$index" :user="$score->user" :score="$score->score" :highlight="$score->user_id == $currentUserId"
                         :isCurrentUser="$score->user_id == $currentUserId" />
                 @endforeach
+                
+                @if (!$isCurrentUserInTop10 && $userRank && $currentUserScore !== null)
+                    <x-rank-item :index="$userRank - 1" :user="$currentUser" :score="$currentUserScore" :highlight="true"
+                        :isCurrentUser="true" />
+                @endif
             </div>
 
-            @if (!$isCurrentUserInTop10 && $userRank && $currentUserScore !== null)
-                <x-rank-item :index="$userRank - 1" :user="$currentUser" :score="$currentUserScore" :highlight="true"
-                    :isCurrentUser="true" />
-            @endif
         </div>
 
     </div>
