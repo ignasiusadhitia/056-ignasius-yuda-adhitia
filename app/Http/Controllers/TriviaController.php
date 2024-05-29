@@ -42,18 +42,30 @@ class TriviaController extends Controller
             'answer_id' => 'required|exists:answers,id',
         ]);
 
-        $question = Question::find($request->question_id);
-        $answer = Answer::find($request->answer_id);
+        $question = Question::findOrFail($request->question_id);
+        $answer = Answer::findOrFail($request->answer_id);
 
         $isCorrect = $answer->is_correct;
         $points = $isCorrect ? $question->points : 0;
 
-        UserAnswer::create([
-            'user_id' => auth()->id(),
-            'question_id' => $question->id,
-            'answer_id' => $answer->id,
-            'answered_correctly' => $isCorrect,
-        ]);
+        $userId = auth()->id();
+
+        $userAnswer = UserAnswer::where('user_id', $userId)
+            ->where('question_id', $question->id)
+            ->first();
+
+        if ($userAnswer) {
+            $userAnswer->answer_id = $answer->id;
+            $userAnswer->answered_correctly = $isCorrect;
+            $userAnswer->save();
+        } else {
+            UserAnswer::create([
+                'user_id' => $userId,
+                'question_id' => $question->id,
+                'answer_id' => $answer->id,
+                'answered_correctly' => $isCorrect,
+            ]);
+        }
 
         $user = auth()->user();
         $score = $user->score;
