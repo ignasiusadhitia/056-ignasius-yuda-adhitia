@@ -1155,6 +1155,78 @@ svg {
     background-color: var(--primary-01);
 }
 
+/* SELECT */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 1rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    outline: none;
+}
+
+.select:focus {
+    outline: 3px solid var(--primary-01);
+}
+
+.select-trigger {
+    flex-grow: 1;
+}
+
+.select-trigger span {
+    flex-grow: 1;
+}
+
+.arrow {
+    margin-left: 1rem;
+    transition: transform 0.3s;
+    border: none;
+}
+
+.select.open .arrow {
+    transform: rotate(180deg);
+}
+
+.options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 0.25rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    z-index: 10;
+    box-shadow: var(--box-shadow);
+}
+
+.option {
+    display: block;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.option:hover,
+.option[selected] {
+    background: var(--black);
+    color: var(--white);
+}
+
+.options.show {
+    display: block;
+}
+
 @media screen and (max-width: 600px) {
     .action-wrapper {
         flex-direction: column;
