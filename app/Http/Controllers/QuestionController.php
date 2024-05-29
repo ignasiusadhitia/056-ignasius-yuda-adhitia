@@ -153,7 +153,15 @@ class QuestionController extends Controller
 
     public function answeredQuestions(Request $request)
     {
-        $query = UserAnswer::where('user_id', Auth::id())->with('question.category');
+        $userId = Auth::id();
+        $subQuery = UserAnswer::selectRaw('MAX(id) as id')
+            ->where('user_id', $userId)
+            ->groupBy('question_id');
+
+        $query = UserAnswer::where('user_id', $userId)
+            ->whereIn('id', $subQuery->pluck('id'))
+            ->whereHas('question')
+            ->with('question.category');
 
         if ($search = $request->input('search')) {
             $query->whereHas('question', function ($q) use ($search) {
