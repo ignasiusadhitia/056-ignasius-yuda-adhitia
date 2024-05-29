@@ -1174,7 +1174,8 @@ svg {
     }
     .action-wrapper .search-button,
     .action-wrapper .add-question-button,
-    .action-wrapper .all-question-button {
+    .action-wrapper .all-question-button,
+    .action-wrapper .play-trivia-button {
         width: 100%;
         height: 2.5rem;
     }
