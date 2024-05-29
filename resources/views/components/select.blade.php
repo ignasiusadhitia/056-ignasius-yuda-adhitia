@@ -1,4 +1,4 @@
-@props(['id', 'name', 'label' => null, 'placeholder' => null, 'options' => [], 'selected' => null])
+@props(['id', 'name', 'label', 'options' => [], 'selected' => null])
 
 @php
     $selectedOption = collect($options)->firstWhere('value', $selected);
