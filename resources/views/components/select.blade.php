@@ -1,11 +1,17 @@
-@props(['id', 'name', 'label', 'options' => []])
+@props(['id', 'name', 'label' => null, 'placeholder' => null, 'options' => [], 'selected' => null])
+
+@php
+    $selectedOption = collect($options)->firstWhere('value', $selected);
+@endphp
 
 <div class="field-wrapper">
-    <label for="{{ $id }}">{{ $label }}</label>
+    @if ($label)
+        <label for="{{ $id }}">{{ $label }}</label>
+    @endif
     <div class="select-wrapper">
         <div class="select" id="{{ $id }}" tabindex="0">
             <div class="select-trigger">
-                <span>{{ $options[0]['label'] ?? 'Select an option' }}</span>
+                <span>{{ $selectedOption['label'] ?? 'Select an option' }}</span>
             </div>
             <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 viewBox="0 0 16 16">
@@ -14,7 +20,8 @@
             </svg>
             <div class="options">
                 @foreach ($options as $option)
-                    <span class="option" data-value="{{ $option['value'] }}">
+                    <span class="option" data-value="{{ $option['value'] }}"
+                        {{ $option['value'] == $selected ? 'selected' : '' }}>
                         {{ $option['label'] }}
                     </span>
                 @endforeach

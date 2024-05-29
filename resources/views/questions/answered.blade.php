@@ -66,28 +66,30 @@
             <input type="text" name="search" id="searchField" placeholder="Search questions..."
                 value="{{ request('search') }}">
 
-            <select name="category" id="categoryFilter">
-                <option value="">All Categories</option>
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            </select>
+            <x-select id="categoryFilter" name="category" label="" :options="$categories
+                ->prepend(['id' => '', 'name' => 'All Categories'])
+                ->map(
+                    fn($category) => [
+                        'value' => $category['id'],
+                        'label' => $category['name'],
+                        'selected' => request('category') == $category['id'],
+                    ],
+                )
+                ->toArray()" :selected="request('category')" />
 
-            <select name="difficulty" id="difficultyFilter">
-                <option value="">All Difficulty Levels</option>
-                <option value="easy" {{ request('difficulty') == 'easy' ? 'selected' : '' }}>Easy</option>
-                <option value="medium" {{ request('difficulty') == 'medium' ? 'selected' : '' }}>Medium</option>
-                <option value="hard" {{ request('difficulty') == 'hard' ? 'selected' : '' }}>Hard</option>
-            </select>
+            <x-select id="difficultyFilter" name="difficulty" label="" :options="[
+                ['value' => '', 'label' => 'All Difficulty Levels', 'selected' => request('difficulty') == ''],
+                ['value' => 'easy', 'label' => 'Easy', 'selected' => request('difficulty') == 'easy'],
+                ['value' => 'medium', 'label' => 'Medium', 'selected' => request('difficulty') == 'medium'],
+                ['value' => 'hard', 'label' => 'Hard', 'selected' => request('difficulty') == 'hard'],
+            ]" :selected="request('difficulty')" />
 
-            <select name="answered_correctly" id="answeredCorrectlyFilter">
-                <option value="">All</option>
-                <option value="1" {{ request('answered_correctly') == '1' ? 'selected' : '' }}>Correct</option>
-                <option value="0" {{ request('answered_correctly') == '0' ? 'selected' : '' }}>Incorrect</option>
-            </select>
-
+            <x-select id="answeredCorrectlyFilter" name="answered_correctly" label="" :options="[
+                ['value' => '', 'label' => 'All Answers', 'selected' => request('answered_correctly') == ''],
+                ['value' => '1', 'label' => 'Correct Answers', 'selected' => request('answered_correctly') == '1'],
+                ['value' => '0', 'label' => 'Incorrect Answers', 'selected' => request('answered_correctly') == '0'],
+            ]"
+                :selected="request('answered_correctly')" />
 
             <button type="submit">Filter</button>
         </form>

@@ -906,6 +906,27 @@ svg {
     font: var(--text-sm-normal);
 }
 
+#searchModal .modal-content .options {
+    display: none;
+}
+
+#searchModal .modal-content .options.show {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+#searchModal .modal-content .field-wrapper {
+    margin: 0;
+}
+
+#searchModal .modal-content .select-wrapper {
+    display: inline-block;
+}
+
+#searchModal .modal-content span {
+    text-align: start;
+}
+
 .empty-message-wrapper {
     background-color: white;
     border-radius: var(--border-radius);
