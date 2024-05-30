@@ -26,29 +26,7 @@
         @else
             <div class="questions-wrapper">
                 @foreach ($answeredQuestions as $key => $answeredQuestion)
-                    <div class="question-item">
-                        <div>
-                            {{ ($answeredQuestions->currentPage() - 1) * $answeredQuestions->perPage() + $key + 1 }}
-                        </div>
-                        <div class="question-text-wrapper">
-                            <p>
-                                {{ $answeredQuestion->question->question_text }}
-                            </p>
-                        </div>
-                        <div>
-                            <span class="pill {{ Str::lower($answeredQuestion->question->category->name) }}">
-                                {{ $answeredQuestion->question->category->name }}
-                            </span>
-                        </div>
-                        <div>
-                            <span class="pill {{ $answeredQuestion->question->difficulty_level }}">
-                                {{ $answeredQuestion->question->difficulty_level }}
-                            </span>
-                        </div>
-                        <div>
-                            <span>{{ $answeredQuestion->answered_correctly ? 'Correct' : 'Incorrect' }}</span>
-                        </div>
-                    </div>
+                    <x-answered-question-item :answeredQuestion="$answeredQuestion" :currentPage="$answeredQuestions->currentPage()" :perPage="$answeredQuestions->perPage()" :index="$key" />
                 @endforeach
             </div>
         @endif
