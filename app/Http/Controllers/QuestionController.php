@@ -181,7 +181,7 @@ class QuestionController extends Controller
             });
         }
 
-        if ($request->has('answered_correctly')) {
+        if ($request->filled('answered_correctly')) {
             $answeredCorrectly = (bool) $request->input('answered_correctly');
             $query->where('answered_correctly', $answeredCorrectly);
         }
