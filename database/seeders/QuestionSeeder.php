@@ -428,7 +428,7 @@ class QuestionSeeder extends Seeder
                 'difficulty_level' => 'easy',
                 'category_id' => 4,
                 'user_id' => 1,
-                'image_url' => "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Entrance_of_Nangka_Waterfall_%28Curug_Nangka%29_in_Taman_Nasional_Gunung_Halimun_Salak%2C_West_Java.jpg/640px-Entrance_of_Nangka_Waterfall_%28Curug_Nangka%29_in_Taman_Nasional_Gunung_Halimun_Salak%2C_West_Java.jpg",
+                'image_url' => "https://upload.wikimedia.org/wikipedia/id/2/20/Salak_050408_012_bblk_resize.jpg",
                 'points' => 1,
                 'answers' => [
                     ['answer_text' => 'Mount Halimun Salak National Park', 'is_correct' => true],
