@@ -32,34 +32,7 @@
         @else
             <div class="questions-wrapper">
                 @foreach ($questions as $key => $question)
-                    <div class="question-item">
-                        <div>
-                            {{ ($questions->currentPage() - 1) * $questions->perPage() + $key + 1 }}
-                        </div>
-                        <div class="question-text-wrapper">
-                            <p>
-                                {{ Str::limit($question->question_text, 15) }}
-                            </p>
-                        </div>
-                        <div>
-                            <span class="pill {{ Str::lower($question->category->name) }}">
-                                {{ $question->category->name }}
-                            </span>
-                        </div>
-                        <div>
-                            <span class="pill {{ $question->difficulty_level }}">
-                                {{ $question->difficulty_level }}
-                            </span>
-                        </div>
-                        <div class="action-wrapper">
-                            <a href="{{ route('questions.edit', $question) }}" class="edit-button">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a type="button" class="delete-button" data-question-id="{{ $question->id }}">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </div>
-                    </div>
+                    <x-question-item :question="$question" :currentPage="$questions->currentPage()" :perPage="$questions->perPage()" :index="$key" />
                 @endforeach
             </div>
         @endif
