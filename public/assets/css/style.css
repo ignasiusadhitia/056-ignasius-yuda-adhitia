@@ -683,15 +683,6 @@ svg {
     font-size: 2.5rem;
 }
 
-#deleteModal h3 {
-    font: var(--text-md-semibold);
-}
-
-#deleteModal p {
-    margin-top: -1rem;
-    font: var(--text-sm-normal);
-}
-
 #deleteForm {
     border: none;
     box-shadow: none;
@@ -1015,7 +1006,8 @@ svg {
 }
 
 #statusModal .action-wrapper,
-#timeoutModal .action-wrapper {
+#timeoutModal .action-wrapper,
+#deleteModal #deleteForm .action-wrapper {
     display: flex;
     flex-direction: row;
     font: var(--text-sm-medium);
@@ -1023,7 +1015,8 @@ svg {
 }
 
 #statusModal a,
-#timeoutModal a {
+#timeoutModal a,
+#deleteModal #deleteForm a {
     height: 3rem;
     border: var(--border);
     border-radius: var(--border-radius);
@@ -1032,12 +1025,15 @@ svg {
 #statusModal a,
 #statusModal button,
 #timeoutModal a,
-#timeoutModal button {
+#timeoutModal button,
+#deleteModal #deleteForm a,
+#deleteModal #deleteForm button {
     width: 50%;
 }
 
 #statusModal a:hover,
-#timeoutModal a:hover {
+#timeoutModal a:hover,
+#deleteModal #deleteForm a:hover {
     box-shadow: var(--box-shadow);
 }
 
@@ -1053,11 +1049,13 @@ svg {
     margin-bottom: 1.5rem;
 }
 
-#timeoutModal h3 {
+#timeoutModal h3,
+#deleteModal h3 {
     font: var(--text-md-semibold);
 }
 
-#timeoutModal p {
+#timeoutModal p,
+#deleteModal p {
     margin-top: -1rem;
     font: var(--text-sm-normal);
 }
@@ -1257,7 +1255,8 @@ svg {
     }
 
     #statusModal .action-wrapper,
-    #timeoutModal .action-wrapper {
+    #timeoutModal .action-wrapper,
+    #deleteModal #deleteForm {
         flex-direction: column;
         padding: 1rem;
     }
@@ -1265,7 +1264,9 @@ svg {
     #statusModal a,
     #statusModal button,
     #timeoutModal a,
-    #timeoutModal button {
+    #timeoutModal button,
+    #deleteModal #deleteForm a,
+    #deleteModal #deleteForm button {
         width: 100%;
     }
     .action-wrapper .search-button,
