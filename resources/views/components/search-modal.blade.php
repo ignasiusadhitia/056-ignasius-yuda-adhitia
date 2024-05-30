@@ -37,6 +37,6 @@
                 :selected="request('answered_correctly')" />
         @endif
 
-        <button type="submit">Filter</button>
+        <button type="submit">Search</button>
     </form>
 </x-modal>
