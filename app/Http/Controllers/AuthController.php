@@ -16,31 +16,37 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         if ($request->isMethod("post")) {
-
+    
             $request->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|lowercase|max:255,unique:users',
-                'password' => 'required'
+                'email' => 'required|email|lowercase|max:255|unique:users,email',
+                'password' => 'required|min:8'
             ]);
-
+                
+            if (User::where('email', $request->email)->exists()) {
+                return back()->withErrors(['email' => 'The email address is already registered.'])->withInput();
+            }
+    
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password)
             ]);
-
+    
             if (Auth::attempt([
                 'email' => $request->email,
                 'password' => $request->password
             ])) {
-                return redirect()->route('dashboard')->with('success', 'Registration successful! You\'re now logged in. Explore Jabar Trivia!');
+                return to_route('dashboard')->with('success', 'Registration successful! You\'re now logged in. Explore Jabar Trivia!');
             } else {
                 return to_route('register');
             }
         }
-
+    
         return view('auth.register');
     }
+    
+
 
     public function login(Request $request)
     {
