@@ -3,5 +3,5 @@
     <div>{{ $index + 1 }}.</div>
     <x-user-avatar :user="$user" />
     <div>{{ $isCurrentUser ? 'You' : $user->name }}</div>
-    <div>{{ $score }}pts</div>
+    <div>{{ $score }} pts</div>
 </div>

@@ -1072,7 +1072,7 @@ svg {
     border-radius: var(--border-radius);
     background-color: var(--white);
     cursor: pointer;
-    font: var(--text-sm-normal);
+    font: var(--text-md-medium);
 }
 
 .rank-item:hover {
@@ -1081,7 +1081,7 @@ svg {
 
 .highlight {
     background-color: var(--primary-01) !important;
-    font: var(--text-md-semibold);
+    font: var(--text-lg-bold);
 }
 
 .top-three-wrapper {
@@ -1089,6 +1089,11 @@ svg {
     gap: 0.5rem;
     margin-bottom: 0.75rem;
     align-items: flex-end;
+    background-color: var(--white);
+    padding: 2rem 1rem 1rem 1rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .top-three-wrapper .rank-item {
@@ -1097,7 +1102,7 @@ svg {
     justify-content: center;
     width: 33%;
     text-align: center;
-    font: var(--text-md-normal);
+    font: var(--text-md-medium);
 }
 
 .top-three-wrapper .rank-item:first-child {
