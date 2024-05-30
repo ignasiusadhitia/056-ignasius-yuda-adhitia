@@ -30,7 +30,7 @@ class QuestionController extends Controller
             $query->where('difficulty_level', $difficulty);
         }
 
-        $questions = $query->latest()->paginate(10);
+        $questions = $query->latest()->paginate(10)->appends($request->except('page'));
         $categories = Category::all();
 
         return view('questions.index', compact('questions', 'categories'));
