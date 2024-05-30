@@ -83,7 +83,7 @@ class QuestionController extends Controller
         });
 
 
-        return redirect()->route('questions.index')->with('success', 'Question created successfully!');
+        return redirect()->route('questions.index')->with('success', 'Great job! Your question has been created successfully.');
     }
 
     public function edit(Question $question)
@@ -146,13 +146,13 @@ class QuestionController extends Controller
             $question->answers()->saveMany($answers);
         });
 
-        return redirect()->route('questions.index')->with('success', 'Question updated successfully');
+        return redirect()->route('questions.index')->with('success', 'Question improved! It\'s even better now.');
     }
 
     public function destroy(Question $question)
     {
         $question->delete();
-        return redirect()->route('questions.index')->with('success', 'Question deleted successfully');
+        return redirect()->route('questions.index')->with('success', 'Question deleted. It\'s gone for good.');
     }
 
     public function answeredQuestions(Request $request)
