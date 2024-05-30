@@ -33,7 +33,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password
             ])) {
-                return to_route('login')->with('success', 'Registration successful! Log in now to get started.');
+                return redirect()->route('dashboard')->with('success', 'Registration successful! You\'re now logged in. Explore Jabar Trivia!');
             } else {
                 return to_route('register');
             }
