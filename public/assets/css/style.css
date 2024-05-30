@@ -1254,6 +1254,39 @@ svg {
     display: block;
 }
 
+/* HERO */
+
+.welcome-container {
+    gap: 16rem;
+}
+
+.hero {
+    height: 80vh;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font: var(--display-xl-bold);
+    text-align: left;
+}
+
+.hero h1 > span {
+    color: var(--primary-01);
+}
+
+.hero > p {
+    font: var(--text-xl-normal);
+}
+
+.hero .register-button-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
 @media screen and (max-width: 600px) {
     .action-wrapper {
         flex-direction: column;
@@ -1295,5 +1328,9 @@ svg {
     .pagination-wrapper .pagination-item:last-child,
     .pagination-wrapper .current-page {
         display: flex;
+    }
+
+    .hero > h1 {
+        font: var(--display-md-bold);
     }
 }
