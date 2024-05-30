@@ -97,13 +97,14 @@
 }
 
 /* SCROLLBAR */
-
 *::-webkit-scrollbar {
     width: 8px;
 }
 
 *::-webkit-scrollbar-track {
     background: var(--gray-100);
+    border-radius: var(--border-radius);
+    padding: 2px;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -1225,8 +1226,8 @@ svg {
     left: 0;
     width: 100%;
     margin-top: 0.5rem;
-    max-height: 25rem;
-    overflow-x: auto;
+    max-height: 14rem;
+    overflow-x: hidden;
     border: var(--border);
     border-radius: var(--border-radius);
     background-color: var(--white);
