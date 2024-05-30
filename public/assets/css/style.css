@@ -1257,7 +1257,7 @@ svg {
 /* HERO */
 
 .hero {
-    height: 80vh;
+    height: 70vh;
     gap: 1rem;
     display: flex;
     flex-direction: column;
