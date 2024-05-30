@@ -47,6 +47,7 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string|max:255',
+            'category_id' => 'required|integer|between:1,7',
             'difficulty_level' => 'required|in:easy,medium,hard',
             'image_url' => 'nullable|url|image_url',
             'answer.*' => 'required|string|max:255',
@@ -104,6 +105,7 @@ class QuestionController extends Controller
 
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string|max:255',
+            'category_id' => 'required|integer|between:1,7',
             'difficulty_level' => 'required|in:easy,medium,hard',
             'image_url' => 'nullable|url|image_url',
             'answer.*' => 'required|string|max:255',
