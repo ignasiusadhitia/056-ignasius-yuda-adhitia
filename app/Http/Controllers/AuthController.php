@@ -33,7 +33,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password
             ])) {
-                return to_route('dashboard')->with('success', 'Registered successfully');
+                return redirect()->route('dashboard')->with('success', 'Registration successful! You\'re now logged in. Explore Jabar Trivia!');
             } else {
                 return to_route('register');
             }
@@ -55,9 +55,9 @@ class AuthController extends Controller
                 'password' => $request->password
             ])) {
 
-                return to_route('dashboard')->with('success', 'Logged in successfully');
+                return to_route('dashboard')->with('success', 'Welcome back! You\'re logged in.');
             } else {
-                return to_route('login')->with('error', 'Invalid login details');
+                return to_route('login')->with('error', 'Invalid email or password. Please try again.');
             }
         }
 
@@ -131,6 +131,6 @@ class AuthController extends Controller
 
         Auth::logout();
 
-        return to_route('login')->with('success', 'Logged out successfully');
+        return to_route('login')->with('success', 'You\'re logged out now. See you soon!');
     }
 }

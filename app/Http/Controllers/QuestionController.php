@@ -30,7 +30,7 @@ class QuestionController extends Controller
             $query->where('difficulty_level', $difficulty);
         }
 
-        $questions = $query->latest()->paginate(10);
+        $questions = $query->latest()->paginate(10)->appends($request->except('page'));
         $categories = Category::all();
 
         return view('questions.index', compact('questions', 'categories'));
@@ -47,7 +47,9 @@ class QuestionController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string|max:255',
+            'category_id' => 'required|integer|between:1,7',
             'difficulty_level' => 'required|in:easy,medium,hard',
+            'image_url' => 'nullable|url|image_url',
             'answer.*' => 'required|string|max:255',
             'correct_answer' => 'required|integer|between:1,' . count($request->answer),
         ]);
@@ -81,7 +83,7 @@ class QuestionController extends Controller
         });
 
 
-        return redirect()->route('questions.index')->with('success', 'Question created successfully!');
+        return redirect()->route('questions.index')->with('success', 'Great job! Your question has been created successfully.');
     }
 
     public function edit(Question $question)
@@ -103,7 +105,9 @@ class QuestionController extends Controller
 
         $validator = Validator::make($request->all(), [
             'question_text' => 'required|string|max:255',
+            'category_id' => 'required|integer|between:1,7',
             'difficulty_level' => 'required|in:easy,medium,hard',
+            'image_url' => 'nullable|url|image_url',
             'answer.*' => 'required|string|max:255',
             'correct_answer' => 'required|integer|between:1,' . count($request->answer),
 
@@ -142,18 +146,26 @@ class QuestionController extends Controller
             $question->answers()->saveMany($answers);
         });
 
-        return redirect()->route('questions.index')->with('success', 'Question updated successfully');
+        return redirect()->route('questions.index')->with('success', 'Question improved! It\'s even better now.');
     }
 
     public function destroy(Question $question)
     {
         $question->delete();
-        return redirect()->route('questions.index')->with('success', 'Question deleted successfully');
+        return redirect()->route('questions.index')->with('success', 'Question deleted. It\'s gone for good.');
     }
 
     public function answeredQuestions(Request $request)
     {
-        $query = UserAnswer::where('user_id', Auth::id())->with('question.category');
+        $userId = Auth::id();
+        $subQuery = UserAnswer::selectRaw('MAX(id) as id')
+            ->where('user_id', $userId)
+            ->groupBy('question_id');
+
+        $query = UserAnswer::where('user_id', $userId)
+            ->whereIn('id', $subQuery->pluck('id'))
+            ->whereHas('question')
+            ->with('question.category');
 
         if ($search = $request->input('search')) {
             $query->whereHas('question', function ($q) use ($search) {
@@ -173,12 +185,14 @@ class QuestionController extends Controller
             });
         }
 
-        if ($request->has('answered_correctly')) {
+        if ($request->filled('answered_correctly')) {
             $answeredCorrectly = (bool) $request->input('answered_correctly');
             $query->where('answered_correctly', $answeredCorrectly);
         }
 
-        $answeredQuestions = $query->orderBy('created_at', 'desc')->paginate(10);
+        $answeredQuestions = $query->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends($request->except('page'));
 
         $categories = Category::all();
 

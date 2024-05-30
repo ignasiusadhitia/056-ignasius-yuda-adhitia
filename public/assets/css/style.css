@@ -97,25 +97,26 @@
 }
 
 /* SCROLLBAR */
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--gray-400);
-}
-
 *::-webkit-scrollbar {
     width: 8px;
 }
 
 *::-webkit-scrollbar-track {
-    background: var(--gray-200);
+    background: var(--gray-100);
+    border-radius: var(--border-radius);
+    padding: 2px;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: var(--gray-400);
-    border-radius: 8px;
-    border-top: 4px solid var(--gray-200);
-    border-bottom: 4px solid var(--gray-200);
+    border-radius: 12px;
+    border-top: 4px solid var(--gray-400);
+    border-bottom: 4px solid var(--gray-400);
+}
+
+/* TRANSITION */
+* {
+    transition: all 0.3s ease-in-out;
 }
 
 /* BODY */
@@ -682,15 +683,6 @@ svg {
     font-size: 2.5rem;
 }
 
-#deleteModal h3 {
-    font: var(--text-md-semibold);
-}
-
-#deleteModal p {
-    margin-top: -1rem;
-    font: var(--text-sm-normal);
-}
-
 #deleteForm {
     border: none;
     box-shadow: none;
@@ -901,6 +893,27 @@ svg {
     font: var(--text-sm-normal);
 }
 
+#searchModal .modal-content .options {
+    display: none;
+}
+
+#searchModal .modal-content .options.show {
+    margin-top: 0.5rem;
+    display: block;
+}
+
+#searchModal .modal-content .field-wrapper {
+    margin: 0;
+}
+
+#searchModal .modal-content .select-wrapper {
+    display: inline-block;
+}
+
+#searchModal .modal-content span {
+    text-align: start;
+}
+
 .empty-message-wrapper {
     background-color: white;
     border-radius: var(--border-radius);
@@ -993,7 +1006,8 @@ svg {
 }
 
 #statusModal .action-wrapper,
-#timeoutModal .action-wrapper {
+#timeoutModal .action-wrapper,
+#deleteModal #deleteForm .action-wrapper {
     display: flex;
     flex-direction: row;
     font: var(--text-sm-medium);
@@ -1001,7 +1015,8 @@ svg {
 }
 
 #statusModal a,
-#timeoutModal a {
+#timeoutModal a,
+#deleteModal #deleteForm a {
     height: 3rem;
     border: var(--border);
     border-radius: var(--border-radius);
@@ -1010,12 +1025,15 @@ svg {
 #statusModal a,
 #statusModal button,
 #timeoutModal a,
-#timeoutModal button {
+#timeoutModal button,
+#deleteModal #deleteForm a,
+#deleteModal #deleteForm button {
     width: 50%;
 }
 
 #statusModal a:hover,
-#timeoutModal a:hover {
+#timeoutModal a:hover,
+#deleteModal #deleteForm a:hover {
     box-shadow: var(--box-shadow);
 }
 
@@ -1031,11 +1049,13 @@ svg {
     margin-bottom: 1.5rem;
 }
 
-#timeoutModal h3 {
+#timeoutModal h3,
+#deleteModal h3 {
     font: var(--text-md-semibold);
 }
 
-#timeoutModal p {
+#timeoutModal p,
+#deleteModal p {
     margin-top: -1rem;
     font: var(--text-sm-normal);
 }
@@ -1052,7 +1072,7 @@ svg {
     border-radius: var(--border-radius);
     background-color: var(--white);
     cursor: pointer;
-    font: var(--text-sm-normal);
+    font: var(--text-md-medium);
 }
 
 .rank-item:hover {
@@ -1061,7 +1081,7 @@ svg {
 
 .highlight {
     background-color: var(--primary-01) !important;
-    font: var(--text-md-semibold);
+    font: var(--text-lg-bold);
 }
 
 .top-three-wrapper {
@@ -1069,6 +1089,11 @@ svg {
     gap: 0.5rem;
     margin-bottom: 0.75rem;
     align-items: flex-end;
+    background-color: var(--white);
+    padding: 2rem 1rem 1rem 1rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 .top-three-wrapper .rank-item {
@@ -1077,25 +1102,25 @@ svg {
     justify-content: center;
     width: 33%;
     text-align: center;
-    font: var(--text-md-normal);
+    font: var(--text-md-medium);
 }
 
 .top-three-wrapper .rank-item:first-child {
     order: 2;
     min-height: 14rem;
-    background-color: var(--danger-02);
+    background-color: var(--danger-01);
 }
 
 .top-three-wrapper .rank-item:nth-child(2) {
     order: 1;
     min-height: 12rem;
-    background-color: var(--warning-02);
+    background-color: var(--warning-01);
 }
 
 .top-three-wrapper .rank-item:nth-child(3) {
     order: 3;
     min-height: 10rem;
-    background-color: var(--success-02);
+    background-color: var(--success-01);
 }
 
 .remaining-wrapper {
@@ -1155,13 +1180,151 @@ svg {
     background-color: var(--primary-01);
 }
 
+/* SELECT */
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 1rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    outline: none;
+}
+
+.select:focus {
+    outline: 3px solid var(--primary-01);
+}
+
+.select-trigger {
+    flex-grow: 1;
+    padding: 0.75rem 0;
+}
+
+.select-trigger span {
+    flex-grow: 1;
+}
+
+.arrow {
+    margin-left: 1rem;
+    border: none;
+}
+
+.select.open .arrow {
+    transform: rotate(180deg);
+}
+
+.options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: 0.5rem;
+    max-height: 14rem;
+    overflow-x: hidden;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    z-index: 10;
+    box-shadow: var(--box-shadow);
+}
+
+.option {
+    display: block;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.option:hover,
+.option[selected] {
+    background: var(--black);
+    color: var(--white);
+}
+
+.options.show {
+    display: block;
+}
+
+/* HERO */
+
+.hero {
+    height: 80vh;
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font: var(--display-xl-bold);
+    text-align: left;
+}
+
+.hero h1 > span {
+    color: var(--primary-01);
+}
+
+.hero > p {
+    font: var(--text-xl-normal);
+}
+
+.hero .register-button-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* LOGO */
+header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .logo img {
+    height: 1.55rem;
+    border: none;
+}
+
+header .logo span {
+    font: var(--text-lg-bold);
+    display: block;
+}
+
+header .logo span > span {
+    display: inline;
+    color: var(--primary-01);
+}
+
+header .login-button {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .login-button span {
+    display: block;
+    font: var(--text-sm-medium);
+}
+
 @media screen and (max-width: 600px) {
     .action-wrapper {
         flex-direction: column;
     }
 
     #statusModal .action-wrapper,
-    #timeoutModal .action-wrapper {
+    #timeoutModal .action-wrapper,
+    #deleteModal #deleteForm {
         flex-direction: column;
         padding: 1rem;
     }
@@ -1169,12 +1332,15 @@ svg {
     #statusModal a,
     #statusModal button,
     #timeoutModal a,
-    #timeoutModal button {
+    #timeoutModal button,
+    #deleteModal #deleteForm a,
+    #deleteModal #deleteForm button {
         width: 100%;
     }
     .action-wrapper .search-button,
     .action-wrapper .add-question-button,
-    .action-wrapper .all-question-button {
+    .action-wrapper .all-question-button,
+    .action-wrapper .play-trivia-button {
         width: 100%;
         height: 2.5rem;
     }
@@ -1182,5 +1348,19 @@ svg {
     .user-wrapper .stats-wrapper,
     .menu-item-wrapper ul {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pagination-wrapper .pagination-item {
+        display: none;
+    }
+
+    .pagination-wrapper .pagination-item:first-child,
+    .pagination-wrapper .pagination-item:last-child,
+    .pagination-wrapper .current-page {
+        display: flex;
+    }
+
+    .hero > h1 {
+        font: var(--display-md-bold);
     }
 }
