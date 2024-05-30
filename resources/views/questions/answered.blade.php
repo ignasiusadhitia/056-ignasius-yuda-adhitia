@@ -27,7 +27,9 @@
             <div class="questions-wrapper">
                 @foreach ($answeredQuestions as $key => $answeredQuestion)
                     <div class="question-item">
-                        <div>{{ $key + 1 }}</div>
+                        <div>
+                            {{ ($answeredQuestions->currentPage() - 1) * $answeredQuestions->perPage() + $key + 1 }}
+                        </div>
                         <div class="question-text-wrapper">
                             <p>
                                 {{ $answeredQuestion->question->question_text }}

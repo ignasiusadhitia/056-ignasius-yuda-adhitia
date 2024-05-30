@@ -33,7 +33,9 @@
             <div class="questions-wrapper">
                 @foreach ($questions as $key => $question)
                     <div class="question-item">
-                        <div>{{ $key + 1 }}</div>
+                        <div>
+                            {{ ($questions->currentPage() - 1) * $questions->perPage() + $key + 1 }}
+                        </div>
                         <div class="question-text-wrapper">
                             <p>
                                 {{ Str::limit($question->question_text, 15) }}
