@@ -186,7 +186,9 @@ class QuestionController extends Controller
             $query->where('answered_correctly', $answeredCorrectly);
         }
 
-        $answeredQuestions = $query->orderBy('created_at', 'desc')->paginate(10);
+        $answeredQuestions = $query->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->appends($request->except('page'));
 
         $categories = Category::all();
 
