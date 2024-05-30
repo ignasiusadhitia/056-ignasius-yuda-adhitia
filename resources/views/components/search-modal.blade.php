@@ -32,7 +32,7 @@
             <x-select id="answeredCorrectlyFilter" name="answered_correctly" label="" :options="[
                 ['value' => '', 'label' => 'All Answers', 'selected' => request('answered_correctly') == ''],
                 ['value' => '1', 'label' => 'Correct Answers', 'selected' => request('answered_correctly') == '1'],
-                ['value' => '0', 'label' => 'Incorrect', 'selected' => request('answered_correctly') == '0'],
+                ['value' => '0', 'label' => 'Incorrect Answers', 'selected' => request('answered_correctly') == '0'],
             ]"
                 :selected="request('answered_correctly')" />
         @endif
