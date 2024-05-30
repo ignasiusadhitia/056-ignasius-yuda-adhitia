@@ -10,8 +10,14 @@
                     <h2>{{ $title }}</h2>
                 </div>
             @else
-                <a href="/" class="logo">Jabar Trivia</a>
-                <a href="{{ route('login') }}" class="login-button">Login</a>
+                <a href="/" class="logo">
+                    <span><span>Jabar</span> Trivia</span>
+                </a>
+                <a href="{{ route('login') }}" class="login-button">
+                    <span>
+                        Login
+                    </span>
+                </a>
             @endif
         </nav>
     </header>

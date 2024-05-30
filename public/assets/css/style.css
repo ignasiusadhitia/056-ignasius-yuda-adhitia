@@ -1256,10 +1256,6 @@ svg {
 
 /* HERO */
 
-.welcome-container {
-    gap: 16rem;
-}
-
 .hero {
     height: 80vh;
     gap: 1rem;
@@ -1285,6 +1281,40 @@ svg {
     margin-top: 1rem;
     display: flex;
     justify-content: flex-start;
+}
+
+/* LOGO */
+header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .logo img {
+    height: 1.55rem;
+    border: none;
+}
+
+header .logo span {
+    font: var(--text-lg-bold);
+    display: block;
+}
+
+header .logo span > span {
+    display: inline;
+    color: var(--primary-01);
+}
+
+header .login-button {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .login-button span {
+    display: block;
+    font: var(--text-sm-medium);
 }
 
 @media screen and (max-width: 600px) {
